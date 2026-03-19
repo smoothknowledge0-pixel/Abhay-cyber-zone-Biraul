@@ -1,13 +1,861 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Cyber Zone Biraul | Fast & Trusted Online Services</title>
+    <meta name="description" content="All digital services available at one place with fast processing and trusted support. GST, PAN, FSSAI, Udyam Registration and more.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Dynamic Theme Variables controlled by CMS */
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #4f46e5;
+        }
+
+        /* Custom Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .bg-gradient-soft {
+            background: linear-gradient(135deg, var(--bg-color-1, #f0fdfa) 0%, var(--bg-color-2, #e0e7ff) 100%);
+        }
+
+        /* Admin Panel Scrollbar */
+        .admin-scroll::-webkit-scrollbar { width: 6px; }
+        .admin-scroll::-webkit-scrollbar-track { background: #f1f1f1; rounded: 8px;}
+        .admin-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .admin-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: 'var(--color-primary)', 
+                        secondary: 'var(--color-secondary)',
+                        whatsapp: '#25D366',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen relative" id="body-bg">
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-40 transition-all duration-300 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo (CMS TRIGGER) -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer select-none" id="logo-trigger" title="Abhay Cyber Zone">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg transition-colors duration-300">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-xl leading-tight text-gray-900" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <p class="text-xs text-primary font-medium tracking-wide" id="cms-brand-sub">Biraul</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition">Home</a>
+                    <a href="#services" class="text-gray-600 hover:text-primary font-medium transition nav-services">Services</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition nav-features">Features</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition nav-contact">Contact</a>
+                    <a href="tel:+919102288372" id="cms-nav-call" class="bg-primary hover:opacity-90 text-white px-5 py-2.5 rounded-full font-medium transition shadow-md hover:shadow-lg flex items-center">
+                        <i class="fa-solid fa-phone mr-2"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50">Home</a>
+                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-services">Services</a>
+                <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-features">Features</a>
+                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-soft transition-colors duration-500">
+        <div class="absolute top-0 left-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6 animate-fade-in-up" id="cms-hero-badge">
+                #1 Digital Service Provider in Biraul
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight mb-6 animate-fade-in-up" style="animation-delay: 0.1s;" id="cms-hero-title">
+                Fast & Trusted <br class="hidden md:block" /> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Online Services</span>
+            </h1>
+            <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto mb-10 animate-fade-in-up" style="animation-delay: 0.2s;" id="cms-hero-tagline">
+                All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-primary hover:opacity-90 text-white rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    Contact Now
+                </a>
+                <a href="https://wa.me/919102288372" target="_blank" id="cms-hero-wa" class="w-full sm:w-auto px-8 py-4 bg-white border-2 border-gray-200 hover:border-whatsapp text-gray-800 hover:text-whatsapp rounded-full font-semibold text-lg transition-all shadow-sm hover:shadow-md flex items-center justify-center group">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2 text-whatsapp group-hover:scale-110 transition-transform"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">What We Do</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Premium Services</h3>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-file-invoice-dollar" id="cms-s1-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s1-title">GST Registration</h4>
+                    <p class="text-gray-600 leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-secondary text-2xl mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+                        <i class="fa-regular fa-id-card" id="cms-s2-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s2-title">PAN Card Service</h4>
+                    <p class="text-gray-600 leading-relaxed" id="cms-s2-desc">Apply for a new PAN card or quickly update existing details with our fast-track processing.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-utensils" id="cms-s3-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s3-title">FSSAI Licence</h4>
+                    <p class="text-gray-600 leading-relaxed" id="cms-s3-desc">Get your food business officially registered with the mandatory FSSAI certification quickly.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.3s;">
+                    <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-2xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-industry" id="cms-s4-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s4-title">Udyam Registration</h4>
+                    <p class="text-gray-600 leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50 relative section-toggle transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2 fade-in-up">
+                    <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Why Choose Us</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Built on Trust & Efficiency</h3>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        At Abhay Cyber Zone, we understand that your time is valuable. We eliminate the red tape and long queues, providing you with a seamless digital service experience right here in Biraul.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-primary"><i class="fa-solid fa-bolt text-xl"></i></div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Fast Processing</h4>
+                                <p class="text-gray-600 mt-1">Quick turnaround times for all your crucial documents.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-primary"><i class="fa-solid fa-shield-halved text-xl"></i></div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-900">Trusted Service</h4>
+                                <p class="text-gray-600 mt-1">100% secure handling of your personal data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 fade-in-up">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-primary to-secondary p-8 flex items-center justify-center min-h-[400px]" id="feature-image-bg">
+                             <div class="glass p-8 rounded-xl text-center text-white max-w-sm">
+                                 <i class="fa-solid fa-check-circle text-5xl mb-4 text-green-300"></i>
+                                 <h4 class="text-2xl font-bold mb-2">1000+</h4>
+                                 <p class="text-blue-100">Satisfied Clients in Biraul & Surrounding Areas</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Get In Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Ready to Get Started?</h3>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden fade-in-up">
+                
+                <!-- Contact Info -->
+                <div class="bg-gradient-to-br from-primary to-secondary p-10 lg:p-12 text-white flex flex-col justify-between transition-colors duration-500">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-6">Contact Information</h4>
+                        <div class="space-y-6">
+                            <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white hover:text-blue-200 transition-colors group">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-white/30 transition">
+                                    <i class="fa-solid fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Call Us Directly</p>
+                                    <p class="text-lg font-semibold" id="cms-phone-text">+91 91022 88372</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://wa.me/919102288372" id="cms-contact-wa" target="_blank" class="flex items-center text-white hover:text-blue-200 transition-colors group">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-white/30 transition">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Chat on WhatsApp</p>
+                                    <p class="text-lg font-semibold" id="cms-wa-text">+91 91022 88372</p>
+                                </div>
+                            </a>
+
+                            <div class="flex items-center text-white group">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-200">Visit Us</p>
+                                    <p class="text-lg font-semibold" id="cms-address-text">Biraul, Bihar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="p-10 lg:p-12">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h4>
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Full Name">
+                        </div>
+                        <div>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Phone Number">
+                        </div>
+                        <div>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none" placeholder="Your Message / Requirement"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:opacity-90 text-white font-bold py-4 rounded-xl shadow-md transition-all">
+                            Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <h5 class="text-xl font-bold text-white mb-2" id="cms-footer-brand">Abhay Cyber Zone Biraul</h5>
+                <p class="text-sm text-gray-500">&copy; 2024 All rights reserved.</p>
+            </div>
+            <p class="text-sm text-gray-400">Designed for Digital India <i class="fa-solid fa-heart text-red-500 ml-1"></i></p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919102288372" id="cms-floating-wa" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-all hover:scale-110 z-30 animate-bounce group" style="animation-duration: 2s;">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- ========================================== -->
+    <!-- 🔐 HIDDEN ADMIN SYSTEM START                 -->
+    <!-- ========================================== -->
+    
+    <!-- Login Modal -->
+    <div id="admin-login-modal" class="fixed inset-0 z-[100] bg-gray-900/80 backdrop-blur-sm hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform scale-95 transition-transform duration-300" id="admin-login-box">
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="text-2xl font-bold text-gray-900">Admin Access</h3>
+                <p class="text-sm text-gray-500">Secure Content Management System</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ownership ID</label>
+                    <input type="password" id="admin-id" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-900 outline-none" placeholder="Enter ID">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="admin-pwd" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-900 outline-none" placeholder="Enter Password">
+                </div>
+                <div id="login-error" class="hidden text-red-500 text-sm font-medium text-center">Invalid Credentials!</div>
+                <button id="btn-login" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-lg transition-colors mt-2">Login to Dashboard</button>
+                <button id="btn-close-login" class="w-full text-gray-500 hover:text-gray-800 py-2 text-sm">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Panel -->
+    <div id="admin-dashboard" class="fixed inset-0 z-[110] bg-gray-100 hidden flex-col transition-transform duration-500 translate-y-full">
+        <!-- Topbar -->
+        <div class="bg-white shadow-sm border-b border-gray-200 h-16 flex items-center justify-between px-6 shrink-0">
+            <div class="flex items-center">
+                <i class="fa-solid fa-screwdriver-wrench text-xl text-primary mr-3"></i>
+                <h2 class="text-xl font-bold text-gray-800">Site Manager <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded ml-2">Live Preview Mode</span></h2>
+            </div>
+            <div class="flex space-x-3">
+                <button id="btn-reset-cms" class="px-4 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-lg text-sm font-medium transition">Reset Defaults</button>
+                <button id="btn-save-cms" class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium shadow transition flex items-center"><i class="fa-solid fa-floppy-disk mr-2"></i> Save Changes</button>
+                <button id="btn-close-dashboard" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg text-sm font-medium transition"><i class="fa-solid fa-xmark mr-1"></i> Close</button>
+            </div>
+        </div>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar Navigation -->
+            <div class="w-64 bg-white border-r border-gray-200 flex flex-col p-4 space-y-2 shrink-0 admin-scroll overflow-y-auto">
+                <button class="cms-tab-btn active w-full text-left px-4 py-3 rounded-lg font-medium text-primary bg-blue-50 transition" data-target="tab-theme"><i class="fa-solid fa-palette w-6"></i> Theme & Layout</button>
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-hero"><i class="fa-solid fa-heading w-6"></i> Hero Section</button>
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-services"><i class="fa-solid fa-layer-group w-6"></i> Services Content</button>
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-contact"><i class="fa-solid fa-address-book w-6"></i> Contact & Links</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-1 p-6 overflow-y-auto admin-scroll bg-gray-50">
+                
+                <!-- Theme Tab -->
+                <div id="tab-theme" class="cms-tab-content block max-w-3xl">
+                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Theme Customization</h3>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Primary Color</label>
+                            <div class="flex items-center space-x-3">
+                                <input type="color" id="in-color-primary" class="w-10 h-10 rounded cursor-pointer border-0 p-0">
+                                <input type="text" id="in-color-primary-text" class="border rounded px-3 py-2 w-full font-mono text-sm uppercase">
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Dark Mode Base</label>
+                            <select id="in-theme-mode" class="w-full border rounded px-3 py-2 outline-none">
+                                <option value="light">Light Soft (Default)</option>
+                                <option value="dark">Dark Minimal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Layout & Section Visibility</h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" id="in-vis-services" class="w-5 h-5 text-primary rounded border-gray-300">
+                            <span class="text-gray-700 font-medium">Show Services Section</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" id="in-vis-features" class="w-5 h-5 text-primary rounded border-gray-300">
+                            <span class="text-gray-700 font-medium">Show Features Section</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" id="in-vis-contact" class="w-5 h-5 text-primary rounded border-gray-300">
+                            <span class="text-gray-700 font-medium">Show Contact Section</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Hero Tab -->
+                <div id="tab-hero" class="cms-tab-content hidden max-w-3xl">
+                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Homepage Text</h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Brand Name</label>
+                            <input type="text" id="in-brand-name" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Top Badge Text</label>
+                            <input type="text" id="in-hero-badge" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Main Heading (HTML allowed)</label>
+                            <textarea id="in-hero-title" rows="3" class="w-full border rounded px-3 py-2 outline-none focus:border-primary font-mono text-sm"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
+                            <textarea id="in-hero-tagline" rows="3" class="w-full border rounded px-3 py-2 outline-none focus:border-primary"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Tab -->
+                <div id="tab-services" class="cms-tab-content hidden max-w-4xl">
+                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Manage Services</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- S1 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
+                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 1</div>
+                            <input type="text" id="in-s1-icon" placeholder="FontAwesome Icon Class (e.g. fa-solid fa-file)" class="w-full border rounded px-3 py-2 text-sm outline-none">
+                            <input type="text" id="in-s1-title" placeholder="Title" class="w-full border rounded px-3 py-2 font-bold outline-none">
+                            <textarea id="in-s1-desc" rows="2" placeholder="Description" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        </div>
+                        <!-- S2 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
+                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 2</div>
+                            <input type="text" id="in-s2-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
+                            <input type="text" id="in-s2-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
+                            <textarea id="in-s2-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        </div>
+                        <!-- S3 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
+                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 3</div>
+                            <input type="text" id="in-s3-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
+                            <input type="text" id="in-s3-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
+                            <textarea id="in-s3-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        </div>
+                        <!-- S4 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
+                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 4</div>
+                            <input type="text" id="in-s4-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
+                            <input type="text" id="in-s4-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
+                            <textarea id="in-s4-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Tab -->
+                <div id="tab-contact" class="cms-tab-content hidden max-w-3xl">
+                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Contact Details & Links</h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number (For Links - digits only)</label>
+                            <input type="text" id="in-link-wa" class="w-full border rounded px-3 py-2 outline-none focus:border-primary font-mono">
+                            <p class="text-xs text-gray-500 mt-1">Ex: 919102288372</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Display Text</label>
+                            <input type="text" id="in-text-phone" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Address Display Text</label>
+                            <input type="text" id="in-text-address" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ========================================== -->
+    <!-- 🔐 END HIDDEN ADMIN SYSTEM                   -->
+    <!-- ========================================== -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Basic Website Functionality ---
+            
+            // Mobile Menu
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-xmark');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menuIcon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-xmark');
+                });
+            });
+
+            // Sticky Navbar Glass Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md');
+                    navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+                } else {
+                    navbar.classList.remove('shadow-md');
+                    navbar.style.background = 'rgba(255, 255, 255, 0.7)';
+                }
+            });
+
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+
+            // ==========================================
+            // CMS ADMIN PANEL LOGIC 
+            // ==========================================
+
+            // Default Data Structure
+            const defaultCMSData = {
+                theme: {
+                    primaryColor: '#2563eb',
+                    mode: 'light' // light or dark
+                },
+                visibility: {
+                    services: true,
+                    features: true,
+                    contact: true
+                },
+                content: {
+                    brandName: 'Abhay Cyber Zone',
+                    heroBadge: '#1 Digital Service Provider in Biraul',
+                    heroTitle: 'Fast & Trusted <br class="hidden md:block" /> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Online Services</span>',
+                    heroTagline: 'All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.',
+                    s1Icon: 'fa-solid fa-file-invoice-dollar',
+                    s1Title: 'GST Registration',
+                    s1Desc: 'Complete GST registration and hassle-free return filing services for your business compliance.',
+                    s2Icon: 'fa-regular fa-id-card',
+                    s2Title: 'PAN Card Service',
+                    s2Desc: 'Apply for a new PAN card or quickly update existing details with our fast-track processing.',
+                    s3Icon: 'fa-solid fa-utensils',
+                    s3Title: 'FSSAI Licence',
+                    s3Desc: 'Get your food business officially registered with the mandatory FSSAI certification quickly.',
+                    s4Icon: 'fa-solid fa-industry',
+                    s4Title: 'Udyam Registration',
+                    s4Desc: 'Register your MSME effortlessly with us to avail all government benefits and subsidies.',
+                    linkWA: '919102288372',
+                    textPhone: '+91 91022 88372',
+                    textAddress: 'Biraul, Bihar'
+                }
+            };
+
+            let siteData = JSON.parse(localStorage.getItem('abhayCMSData')) || JSON.parse(JSON.stringify(defaultCMSData));
+
+            // Setup DOM Binders
+            const BINDERS = {
+                'cms-brand-name': 'brandName',
+                'cms-footer-brand': 'brandName',
+                'cms-hero-badge': 'heroBadge',
+                'cms-hero-title': 'heroTitle',
+                'cms-hero-tagline': 'heroTagline',
+                'cms-s1-title': 's1Title', 'cms-s1-desc': 's1Desc',
+                'cms-s2-title': 's2Title', 'cms-s2-desc': 's2Desc',
+                'cms-s3-title': 's3Title', 'cms-s3-desc': 's3Desc',
+                'cms-s4-title': 's4Title', 'cms-s4-desc': 's4Desc',
+                'cms-phone-text': 'textPhone',
+                'cms-wa-text': 'textPhone', // Re-using phone text for WA display
+                'cms-address-text': 'textAddress'
+            };
+
+            const ICON_BINDERS = {
+                'cms-s1-icon': 's1Icon',
+                'cms-s2-icon': 's2Icon',
+                'cms-s3-icon': 's3Icon',
+                'cms-s4-icon': 's4Icon'
+            };
+
+            // Render Function (Updates Website UI based on siteData)
+            function renderWebsite() {
+                // 1. Theme
+                document.documentElement.style.setProperty('--color-primary', siteData.theme.primaryColor);
+                
+                // Dark mode layout handler (simple simulation)
+                const body = document.getElementById('body-bg');
+                if(siteData.theme.mode === 'dark') {
+                    body.classList.replace('bg-gray-50', 'bg-gray-900');
+                    document.documentElement.style.setProperty('--bg-color-1', '#1e293b');
+                    document.documentElement.style.setProperty('--bg-color-2', '#0f172a');
+                } else {
+                    body.classList.replace('bg-gray-900', 'bg-gray-50');
+                    document.documentElement.style.setProperty('--bg-color-1', '#f0fdfa');
+                    document.documentElement.style.setProperty('--bg-color-2', '#e0e7ff');
+                }
+
+                // 2. Visibility Toggles
+                document.getElementById('services').style.display = siteData.visibility.services ? 'block' : 'none';
+                document.querySelectorAll('.nav-services').forEach(e => e.style.display = siteData.visibility.services ? 'block' : 'none');
+                
+                document.getElementById('features').style.display = siteData.visibility.features ? 'block' : 'none';
+                document.querySelectorAll('.nav-features').forEach(e => e.style.display = siteData.visibility.features ? 'block' : 'none');
+                
+                document.getElementById('contact').style.display = siteData.visibility.contact ? 'block' : 'none';
+                document.querySelectorAll('.nav-contact').forEach(e => e.style.display = siteData.visibility.contact ? 'block' : 'none');
+
+                // 3. Text Content
+                for (const [id, key] of Object.entries(BINDERS)) {
+                    const el = document.getElementById(id);
+                    if (el) el.innerHTML = siteData.content[key];
+                }
+
+                // 4. Icons
+                for (const [id, key] of Object.entries(ICON_BINDERS)) {
+                    const el = document.getElementById(id);
+                    if (el) el.className = siteData.content[key];
+                }
+
+                // 5. Links
+                const waLink = `https://wa.me/${siteData.content.linkWA}`;
+                document.getElementById('cms-hero-wa').href = waLink;
+                document.getElementById('cms-contact-wa').href = waLink;
+                document.getElementById('cms-floating-wa').href = waLink;
+                
+                const cleanPhone = siteData.content.textPhone.replace(/[^0-9+]/g, '');
+                document.getElementById('cms-nav-call').href = `tel:${cleanPhone}`;
+                document.getElementById('cms-contact-call').href = `tel:${cleanPhone}`;
+            }
+
+            // Initial Render
+            renderWebsite();
+
+
+            // --- Hidden Trigger Logic (5 Clicks) ---
+            let clickCount = 0;
+            let clickTimer = null;
+            const logoTrigger = document.getElementById('logo-trigger');
+            const loginModal = document.getElementById('admin-login-modal');
+            const loginBox = document.getElementById('admin-login-box');
+            const dashboard = document.getElementById('admin-dashboard');
+
+            logoTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                clickCount++;
+                if (clickCount >= 5) {
+                    showLoginModal();
+                    clickCount = 0;
+                }
+                clearTimeout(clickTimer);
+                clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+            });
+
+            function showLoginModal() {
+                loginModal.classList.remove('hidden');
+                // Small delay for transition
+                setTimeout(() => {
+                    loginModal.classList.remove('opacity-0');
+                    loginBox.classList.remove('scale-95');
+                }, 10);
+            }
+
+            function hideLoginModal() {
+                loginModal.classList.add('opacity-0');
+                loginBox.classList.add('scale-95');
+                setTimeout(() => {
+                    loginModal.classList.add('hidden');
+                    document.getElementById('login-error').classList.add('hidden');
+                    document.getElementById('admin-id').value = '';
+                    document.getElementById('admin-pwd').value = '';
+                }, 300);
+            }
+
+            document.getElementById('btn-close-login').addEventListener('click', hideLoginModal);
+
+            // --- Authentication ---
+            document.getElementById('btn-login').addEventListener('click', () => {
+                const id = document.getElementById('admin-id').value;
+                const pwd = document.getElementById('admin-pwd').value;
+
+                // NOTE: Hardcoded for simulation as requested
+                if (id === 'Abhay@#kumar*372' && pwd === 'Abhay@kumar372#') {
+                    hideLoginModal();
+                    openDashboard();
+                } else {
+                    document.getElementById('login-error').classList.remove('hidden');
+                }
+            });
+
+
+            // --- Dashboard Logic ---
+            const INPUT_MAP = {
+                // Theme
+                'in-color-primary': { type: 'theme', key: 'primaryColor' },
+                'in-theme-mode': { type: 'theme', key: 'mode' },
+                // Vis
+                'in-vis-services': { type: 'vis', key: 'services' },
+                'in-vis-features': { type: 'vis', key: 'features' },
+                'in-vis-contact': { type: 'vis', key: 'contact' },
+                // Content
+                'in-brand-name': { type: 'content', key: 'brandName' },
+                'in-hero-badge': { type: 'content', key: 'heroBadge' },
+                'in-hero-title': { type: 'content', key: 'heroTitle' },
+                'in-hero-tagline': { type: 'content', key: 'heroTagline' },
+                'in-s1-icon': { type: 'content', key: 's1Icon' }, 'in-s1-title': { type: 'content', key: 's1Title' }, 'in-s1-desc': { type: 'content', key: 's1Desc' },
+                'in-s2-icon': { type: 'content', key: 's2Icon' }, 'in-s2-title': { type: 'content', key: 's2Title' }, 'in-s2-desc': { type: 'content', key: 's2Desc' },
+                'in-s3-icon': { type: 'content', key: 's3Icon' }, 'in-s3-title': { type: 'content', key: 's3Title' }, 'in-s3-desc': { type: 'content', key: 's3Desc' },
+                'in-s4-icon': { type: 'content', key: 's4Icon' }, 'in-s4-title': { type: 'content', key: 's4Title' }, 'in-s4-desc': { type: 'content', key: 's4Desc' },
+                'in-link-wa': { type: 'content', key: 'linkWA' },
+                'in-text-phone': { type: 'content', key: 'textPhone' },
+                'in-text-address': { type: 'content', key: 'textAddress' }
+            };
+
+            function populateDashboard() {
+                for (const [inputId, path] of Object.entries(INPUT_MAP)) {
+                    const el = document.getElementById(inputId);
+                    if (!el) continue;
+                    
+                    const val = siteData[path.type][path.key];
+                    if (el.type === 'checkbox') {
+                        el.checked = val;
+                    } else {
+                        el.value = val;
+                    }
+                    
+                    // Special case for color hex sync
+                    if(inputId === 'in-color-primary') {
+                        document.getElementById('in-color-primary-text').value = val;
+                    }
+                }
+            }
+
+            function setupLivePreview() {
+                for (const [inputId, path] of Object.entries(INPUT_MAP)) {
+                    const el = document.getElementById(inputId);
+                    if (!el) continue;
+
+                    el.addEventListener('input', (e) => {
+                        let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+                        siteData[path.type][path.key] = val;
+                        
+                        // Sync Color inputs
+                        if(inputId === 'in-color-primary') {
+                            document.getElementById('in-color-primary-text').value = val;
+                        } else if (inputId === 'in-color-primary-text') {
+                            document.getElementById('in-color-primary').value = val;
+                            siteData.theme.primaryColor = val;
+                        }
+
+                        renderWebsite(); // Live update
+                    });
+                }
+
+                // Sync Hex Text Input
+                document.getElementById('in-color-primary-text').addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    if(/^#[0-9A-F]{6}$/i.test(val)){
+                        document.getElementById('in-color-primary').value = val;
+                        siteData.theme.primaryColor = val;
+                        renderWebsite();
+                    }
+                });
+            }
+
+            function openDashboard() {
+                dashboard.classList.remove('hidden');
+                populateDashboard();
+                setupLivePreview();
+                // slide up animation
+                setTimeout(() => dashboard.classList.remove('translate-y-full'), 10);
+            }
+
+            // Close Dashboard
+            document.getElementById('btn-close-dashboard').addEventListener('click', () => {
+                dashboard.classList.add('translate-y-full');
+                setTimeout(() => dashboard.classList.add('hidden'), 500);
+                
+                // If closed without saving, reload from storage
+                const saved = localStorage.getItem('abhayCMSData');
+                siteData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultCMSData));
+                renderWebsite();
+            });
+
+            // Save Changes
+            document.getElementById('btn-save-cms').addEventListener('click', (e) => {
+                localStorage.setItem('abhayCMSData', JSON.stringify(siteData));
+                const btn = e.target;
+                const ogHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Saved!';
+                btn.classList.replace('bg-green-600', 'bg-blue-600');
+                setTimeout(() => {
+                    btn.innerHTML = ogHtml;
+                    btn.classList.replace('bg-blue-600', 'bg-green-600');
+                }, 2000);
+            });
+
+            // Reset to defaults
+            document.getElementById('btn-reset-cms').addEventListener('click', () => {
+                if(confirm('Are you sure you want to reset all content and styles to original defaults?')) {
+                    siteData = JSON.parse(JSON.stringify(defaultCMSData));
+                    populateDashboard();
+                    renderWebsite();
+                }
+            });
+
+            // Dashboard Tabs Logic
+            document.querySelectorAll('.cms-tab-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Reset tab styles
+                    document.querySelectorAll('.cms-tab-btn').forEach(b => {
+                        b.classList.remove('text-primary', 'bg-blue-50');
+                        b.classList.add('text-gray-600');
+                    });
+                    // Active tab style
+                    const current = e.currentTarget;
+                    current.classList.remove('text-gray-600');
+                    current.classList.add('text-primary', 'bg-blue-50');
+
+                    // Show content
+                    document.querySelectorAll('.cms-tab-content').forEach(c => c.classList.add('hidden'));
+                    const targetId = current.getAttribute('data-target');
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+</body>
 </html>
+
 
