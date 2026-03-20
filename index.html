@@ -515,12 +515,28 @@
                 </div>
 
                 <!-- 7. Pricing Section -->
-                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up text-center border" style="border-color: rgba(10, 132, 255, 0.3); box-shadow: 0 0 30px rgba(10, 132, 255, 0.1);">
-                    <h3 id="cms-gst-price-title" class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-6">GST Registration Charges</h3>
-                    <div class="flex justify-center items-baseline mb-6">
-                        <span class="text-2xl font-semibold text-white/70 mr-1">₹</span>
-                        <span id="cms-gst-price-val" class="text-6xl font-bold text-white">999</span>
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up text-center border relative overflow-hidden" style="border-color: rgba(10, 132, 255, 0.3); box-shadow: 0 0 30px rgba(10, 132, 255, 0.1);">
+                    
+                    <!-- Discount Badge -->
+                    <div class="mb-4 inline-block px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-[10px] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                        <span id="cms-gst-price-badge">Limited Time Offer</span>
                     </div>
+
+                    <h3 id="cms-gst-price-title" class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-4">GST Registration Charges</h3>
+                    
+                    <div class="flex flex-col justify-center items-center mb-6">
+                        <!-- Original Price -->
+                        <div class="flex items-center text-white/40 mb-1">
+                            <span class="text-lg font-medium mr-1">₹</span>
+                            <span id="cms-gst-price-old" class="text-2xl font-medium line-through">2499</span>
+                        </div>
+                        <!-- New Price -->
+                        <div class="flex justify-center items-baseline drop-shadow-[0_0_15px_rgba(10,132,255,0.4)]">
+                            <span class="text-3xl font-semibold mr-1" style="color: var(--ios-accent)">₹</span>
+                            <span id="cms-gst-price-new" class="text-6xl font-bold text-white">1999</span>
+                        </div>
+                    </div>
+
                     <ul class="text-left space-y-3 mb-8 w-full max-w-[200px] mx-auto">
                         <li class="flex items-center text-sm text-white/80"><i class="fa-solid fa-check text-green-400 mr-3"></i> <span id="cms-gst-price-note1">Transparent Pricing</span></li>
                         <li class="flex items-center text-sm text-white/80"><i class="fa-solid fa-check text-green-400 mr-3"></i> <span id="cms-gst-price-note2">No hidden charges</span></li>
@@ -659,13 +675,13 @@
                                     <p class="text-base font-medium">+91 9102288372</p>
                                 </div>
                             </a>
-                            <a href="mailto:support@abhaycyberzone.com" id="cms-contact-email" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                            <a href="mailto:kanhaiyaservices2025@gmail.com" id="cms-contact-email" class="flex items-center text-white/80 hover:text-white transition-colors group">
                                 <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
                                     <i class="fa-solid fa-envelope text-lg"></i>
                                 </div>
                                 <div>
                                     <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Email Us</p>
-                                    <p class="text-base font-medium">support@abhaycyberzone.com</p>
+                                    <p class="text-base font-medium">kanhaiyaservices2025@gmail.com</p>
                                 </div>
                             </a>
                             <div class="flex items-center text-white/80 group">
