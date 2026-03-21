@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udyam Registration (MSME) | Abhay Cyber Zone Biraul</title>
+    <meta name="description" content="Apne Business ko Government se Official Identity Dilwaye! Fast & Trusted Udyam Registration in Biraul.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Apple System Typography & Core Variables */
+        :root {
+            --ios-accent: #0A84FF; /* iOS Blue */
+            --ios-overlay: rgba(0, 0, 0, 0.6);
+            --ios-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, "Segoe UI", Roboto, Ubuntu, sans-serif;
+            background-color: #000;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Fullscreen Background Setup */
+        .bg-system {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+        
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--ios-overlay);
+            z-index: -1;
+            transition: background 0.5s var(--ios-bezier);
+        }
+
+        /* Glassmorphism Classes */
+        .ios-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .ios-glass-heavy {
+            background: rgba(30, 30, 30, 0.65);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+        }
+
+        .ios-glass-nav {
+            background: rgba(20, 20, 20, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Micro-Interactions & Animations */
+        .ios-btn {
+            transition: all 0.4s var(--ios-bezier);
+            cursor: pointer;
+            border-radius: 9999px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ios-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ios-btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
+        }
+
+        .ios-btn-primary {
+            background-color: var(--ios-accent);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(var(--ios-accent-rgb), 0.4);
+        }
+
+        .ios-card {
+            transition: all 0.5s var(--ios-bezier);
+        }
+        .ios-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll Animation Utility */
+        .ios-fade-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.7s var(--ios-bezier);
+        }
+        .ios-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Text Utilities */
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Social Media Hover Effects --- */
+        .social-link {
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.5); }
+        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.5); }
+        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.5); }
+        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.5); }
+        
+        /* --- Floating Social Bar (Left) --- */
+        .floating-social-bar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 10px;
+        }
+        @media (max-width: 768px) {
+            .floating-social-bar {
+                display: none;
+            }
+        }
+        
+        /* --- WhatsApp Floating Button Animation --- */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-float-btn {
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* --- Mobile Menu Styling --- */
+        .mobile-menu-wrapper {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 80px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px);
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .mobile-menu-wrapper.is-open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- FAQ Accordion Fixes --- */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-system"></div>
+    <div class="bg-overlay" id="dynamic-overlay"></div>
+
+    <!-- --- Floating Social Media Bar (Left Side) --- -->
+    <div class="floating-social-bar ios-glass rounded-full border border-white/10 shadow-lg">
+        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb" title="Facebook">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="WhatsApp Channel">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="Join WhatsApp Group">
+            <i class="fa-solid fa-users text-sm"></i>
+        </a>
+        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg" title="Telegram">
+            <i class="fa-brands fa-telegram text-lg"></i>
+        </a>
+        <a href="https://www.instagram.com/abhaycyberzone.biraul?igsh=b3RlbXFyNTVyamxn" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig" title="Instagram">
+            <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Trigger -->
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer select-none group" id="logo-trigger" title="Abhay Cyber Zone">
+                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-active:scale-95">
+                        <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" id="cms-brand-sub" style="color: var(--ios-accent)">Biraul</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
+                    <a href="index.html#services" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Services</a>
+                    <a href="#" class="text-[var(--ios-accent)] font-semibold transition-colors text-sm">Udyam Service</a>
+                    <a href="index.html#features" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Features</a>
+                    <a href="index.html#contact" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Contact</a>
+                    <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm">
+                        <i class="fa-solid fa-phone mr-2 text-xs"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu-wrapper md:hidden">
+            <div class="px-5 py-6 space-y-3">
+                <a href="index.html" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm">Home</a>
+                <a href="index.html#services" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm">Services</a>
+                <a href="#" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-[var(--ios-accent)] bg-white/5 transition-colors shadow-sm">Udyam Service</a>
+                <a href="index.html#features" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm">Features</a>
+                <a href="index.html#contact" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- UDYAM DEDICATED PAGE CONTENT               -->
+    <!-- ========================================== -->
+    <main class="pt-28 pb-20 lg:pt-36 relative z-10 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- 1. Hero Banner for Udyam -->
+            <div class="ios-glass p-10 md:p-16 rounded-[32px] text-center mb-12 relative overflow-hidden ios-fade-up">
+                <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full blur-[80px] opacity-20" style="background: var(--ios-accent)"></div>
+                <div class="absolute -bottom-32 -right-32 w-64 h-64 rounded-full blur-[80px] opacity-10 bg-white"></div>
+                
+                <div class="relative z-10">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 shadow-lg"><i class="fa-solid fa-shield-check text-[var(--ios-accent)] mr-1"></i> Government Verified Service</span>
+                    <h1 id="cms-udyam-hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white tracking-tight text-gradient">Apne Business ko Government se <br class="hidden md:block"/> Official Identity Dilwaye!</h1>
+                    <p id="cms-udyam-hero-sub" class="text-xl md:text-2xl text-[var(--ios-accent)] font-semibold mb-6">“Ab chhota business bhi bade level par chalega!”</p>
+                    <p id="cms-udyam-hero-desc" class="text-base md:text-lg text-white/70 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                        Kya aap apna business grow karna chahte hain? Loan lena hai ya government schemes ka benefit chahiye? <br>
+                        <span class="font-medium text-white/90 block mt-2">👉 Toh bina delay kiye Udyam (MSME) Registration karwana zaruri hai!</span>
+                    </p>
+                    
+                    <div id="cms-udyam-hero-power" class="bg-white/5 border border-white/10 rounded-xl p-4 inline-block mx-auto mb-10 shadow-sm">
+                        <p class="text-sm md:text-base font-medium text-white/90 flex items-center">
+                            <i class="fa-solid fa-rocket text-yellow-400 mr-2"></i> Aaj register karo, kal business grow karo!
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="https://wa.me/919102288372" target="_blank" id="cms-udyam-btn-apply" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base font-semibold">
+                            Book Now
+                        </a>
+                        <a href="https://wa.me/919102288372" target="_blank" id="cms-udyam-btn-wa" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group font-semibold">
+                            <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- 2. About Udyam Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-[14px] bg-white/10 border border-white/10 flex items-center justify-center mr-5 shadow-sm" style="color: var(--ios-accent)"><i class="fa-solid fa-building-columns text-2xl"></i></div>
+                        <h2 id="cms-udyam-about-title" class="text-2xl font-bold text-white tracking-tight">Udyam Registration kya hai?</h2>
+                    </div>
+                    <p id="cms-udyam-about-desc" class="text-white/70 text-base leading-relaxed mb-6 font-light">
+                        Udyam Registration Government of India ka official MSME certificate hai jo aapke business ko legal recognition aur growth power deta hai.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start text-white/80 text-sm">
+                            <div class="mt-0.5 mr-3 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center border border-white/5"><i class="fa-solid fa-check text-[10px]" style="color: var(--ios-accent)"></i></div>
+                            <span id="cms-udyam-abt1" class="font-medium text-[15px]">Business ko legal identity milti hai</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <div class="mt-0.5 mr-3 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center border border-white/5"><i class="fa-solid fa-check text-[10px]" style="color: var(--ios-accent)"></i></div>
+                            <span id="cms-udyam-abt2" class="font-medium text-[15px]">Government aur banks ke saamne credibility badhta hai</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <div class="mt-0.5 mr-3 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center border border-white/5"><i class="fa-solid fa-check text-[10px]" style="color: var(--ios-accent)"></i></div>
+                            <span id="cms-udyam-abt3" class="font-medium text-[15px]">Trusted brand image create hota hai</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <div class="mt-0.5 mr-3 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center border border-white/5"><i class="fa-solid fa-check text-[10px]" style="color: var(--ios-accent)"></i></div>
+                            <span id="cms-udyam-abt4" class="font-medium text-[15px]">Growth aur funding ke chances increase hote hain</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Eligibility Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-[14px] bg-white/10 border border-white/10 flex items-center justify-center mr-5 shadow-sm" style="color: var(--ios-accent)"><i class="fa-solid fa-bullseye text-2xl"></i></div>
+                        <h2 id="cms-udyam-elig-title" class="text-2xl font-bold text-white tracking-tight">Kis-kis ke liye perfect hai?</h2>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-store text-white/50 text-sm"></i> <span id="cms-udyam-elig1" class="text-sm font-medium text-white/90">Shop Owner / Retailer</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-computer text-white/50 text-sm"></i> <span id="cms-udyam-elig2" class="text-sm font-medium text-white/90">Cyber Cafe / CSC</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-cart-shopping text-white/50 text-sm"></i> <span id="cms-udyam-elig3" class="text-sm font-medium text-white/90">Online Seller</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-laptop-code text-white/50 text-sm"></i> <span id="cms-udyam-elig4" class="text-sm font-medium text-white/90">Freelancer / YouTuber</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-chalkboard-user text-white/50 text-sm"></i> <span id="cms-udyam-elig5" class="text-sm font-medium text-white/90">Coaching / Service</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 transition-colors hover:bg-white/10"><i class="fa-solid fa-rocket text-white/50 text-sm"></i> <span id="cms-udyam-elig6" class="text-sm font-medium text-white/90">Startup Founder</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 col-span-2 transition-colors hover:bg-white/10"><i class="fa-solid fa-industry text-white/50 text-sm"></i> <span id="cms-udyam-elig7" class="text-sm font-medium text-white/90">Manufacturer & Small Industry</span></div>
+                    </div>
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
+                        <p id="cms-udyam-elig-note" class="text-sm text-blue-200"><i class="fa-solid fa-circle-exclamation mr-2"></i>👉 Agar aap paisa kama rahe ho, toh aapko Udyam Registration chahiye!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW: Benefits (Game Changer) Section -->
+            <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up mb-12">
+                <div class="text-center mb-8">
+                    <h2 id="cms-udyam-ben-title" class="text-3xl font-bold text-white tracking-tight flex items-center justify-center"><i class="fa-solid fa-star text-yellow-400 mr-3"></i> Why Udyam is a Game-Changer?</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-landmark text-[var(--ios-accent)]"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Government schemes ka direct access</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-money-bill-trend-up text-green-400"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Mudra loan & business loan easily milta hai</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-percent text-purple-400"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Interest subsidy & financial support</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-file-contract text-orange-400"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Tender & government contracts me advantage</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-medal text-yellow-500"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Branding & trust boost, Registered business ka tag</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-5 flex items-start gap-4 transition-all hover:-translate-y-1 hover:border-[var(--ios-accent)]">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-laptop-code text-pink-400"></i></div>
+                        <span class="text-sm font-medium text-white/90 mt-1">Startup & digital business ke liye must</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Our Services Section -->
+            <div class="mb-12">
+                <div class="text-center mb-8 ios-fade-up">
+                    <p class="text-white/50 text-sm uppercase tracking-widest font-semibold mb-2">Udyam ke saath business banega brand!</p>
+                    <h2 id="cms-udyam-services-title" class="text-3xl font-bold text-white tracking-tight">Hamari Premium Services</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-id-card-clip text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">Instant Udyam Registration</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Fast processing aur accurate registration aapke business details ke hisaab se.</p>
+                    </div>
+                    
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group" style="transition-delay: 0.1s;">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-file-circle-check text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">Error-Free Application Filing</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Humare experts form filling me zero error ensure karte hain taaki rejection na ho.</p>
+                    </div>
+
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group" style="transition-delay: 0.2s;">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-barcode text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">NIC Code Selection</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Aapke business activity ke liye exact aur perfect NIC code choose karne me expert help.</p>
+                    </div>
+
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group" style="transition-delay: 0.3s;">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-download text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">Certificate Download</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Registration complete hone par PDF certificate securely aapko send kiya jata hai.</p>
+                    </div>
+
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group" style="transition-delay: 0.4s;">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-pen-to-square text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">Update / Correction</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Puraane certificate me details update ya correct karwane ke liye full support.</p>
+                    </div>
+
+                    <div class="ios-glass ios-card p-6 rounded-[24px] ios-fade-up group" style="transition-delay: 0.5s;">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 border border-white/10 group-hover:border-[var(--ios-accent)] transition-colors" style="color: var(--ios-accent)">
+                            <i class="fa-solid fa-hand-holding-dollar text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors">Loan & Scheme Guidance</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">Udyam certificate ke zariye MSME loans aur schemes apply karne me basic guidance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- 5. Required Documents (Premium UI) -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-1">
+                    <h3 id="cms-udyam-docs-title" class="text-xl font-bold text-white tracking-tight mb-6 flex items-center"><i class="fa-solid fa-folder-open mr-3" style="color: var(--ios-accent)"></i> Required Documents</h3>
+                    
+                    <div class="space-y-5">
+                        <!-- Basic -->
+                        <div>
+                            <h4 class="text-[11px] uppercase tracking-widest text-[var(--ios-accent)] font-semibold mb-2">Basic Details</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Aadhaar Card (Owner)</span></li>
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Mobile No. (Aadhaar linked)</span></li>
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Email ID</span></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Business -->
+                        <div>
+                            <h4 class="text-[11px] uppercase tracking-widest text-[var(--ios-accent)] font-semibold mb-2">Business Details</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Business Name & Address</span></li>
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Activity (Service/Mfg/Trading)</span></li>
+                                <li class="flex items-center text-white/80 text-sm"><i class="fa-solid fa-circle-dot text-[6px] text-white/30 mr-2"></i> <span>Start Date</span></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Optional -->
+                        <div class="bg-white/5 p-3 rounded-xl border border-white/5">
+                            <h4 class="text-[11px] uppercase tracking-widest text-white/50 font-semibold mb-2">Optional / Additional</h4>
+                            <p class="text-xs text-white/60 leading-relaxed">PAN Card, Bank Account Details, GST Number, Investment & Turnover Details.</p>
+                        </div>
+                        
+                        <p class="text-xs text-[var(--ios-accent)] font-semibold italic text-center mt-2">👉 Step-by-step guidance hum provide karenge</p>
+                    </div>
+                </div>
+
+                <!-- 6. Process Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-2" style="transition-delay: 0.1s;">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 id="cms-udyam-proc-title" class="text-xl font-bold text-white tracking-tight flex items-center"><i class="fa-solid fa-list-check mr-3" style="color: var(--ios-accent)"></i> Application Process</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative mt-4">
+                        <!-- Connecting Line (Desktop) -->
+                        <div class="hidden lg:block absolute top-10 left-10 right-10 h-0.5 bg-white/10 z-0"></div>
+                        
+                        <!-- Step 1 -->
+                        <div class="text-center p-4 relative z-10">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50" style="border-color: var(--ios-accent)">1</div>
+                            <h4 class="font-semibold text-white mb-2 text-sm">Send Docs</h4>
+                            <p class="text-xs text-white/50">Documents WhatsApp par bheje.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="text-center p-4 relative z-10">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50" style="border-color: var(--ios-accent)">2</div>
+                            <h4 class="font-semibold text-white mb-2 text-sm">Expert Filling</h4>
+                            <p class="text-xs text-white/50">Expert dwara proper form filling.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="text-center p-4 relative z-10">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50" style="border-color: var(--ios-accent)">3</div>
+                            <h4 class="font-semibold text-white mb-2 text-sm">Verification</h4>
+                            <p class="text-xs text-white/50">Govt portal verification process.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="text-center p-4 relative z-10">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-[var(--ios-accent)] text-white shadow-[0_0_15px_rgba(10,132,255,0.5)]">4</div>
+                            <h4 class="font-semibold text-white mb-2 text-sm">Certificate Issued</h4>
+                            <p class="text-xs text-white/50">Udyam certificate instantly generate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <!-- 7. Time & Pricing (Col 1) -->
+                <div class="space-y-6">
+                    <!-- Processing Time -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up">
+                        <h3 class="text-lg font-bold text-white tracking-tight mb-4 flex items-center"><i class="fa-solid fa-clock-rotate-left mr-3 text-yellow-400"></i> Processing Time</h3>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 text-center">
+                            <p class="text-[11px] text-white/50 uppercase tracking-widest font-semibold mb-1">Standard Processing</p>
+                            <p class="text-xl font-bold text-white">Same Day / 24 Hrs</p>
+                            <p class="text-xs text-[var(--ios-accent)] mt-2">👉 Certificate direct aapke naam par</p>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Section -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up text-center border relative overflow-hidden flex flex-col justify-center" style="border-color: rgba(10, 132, 255, 0.3); box-shadow: 0 0 30px rgba(10, 132, 255, 0.1);">
+                        <div class="mb-4 inline-block px-3 py-1.5 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-[10px] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.2)] mx-auto">
+                            <span id="cms-udyam-price-badge"><i class="fa-solid fa-fire mr-1"></i> Special Offer</span>
+                        </div>
+                        
+                        <h3 class="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">Udyam Registration</h3>
+                        
+                        <div class="flex flex-col justify-center items-center mb-6">
+                            <!-- Original Price -->
+                            <div class="flex items-center text-white/40 mb-1">
+                                <span class="text-base font-medium mr-1">₹</span>
+                                <span id="cms-udyam-price-old" class="text-xl font-medium line-through">999</span>
+                            </div>
+                            <!-- New Price Highlight -->
+                            <div class="flex flex-col justify-center items-center drop-shadow-[0_0_15px_rgba(10,132,255,0.4)]">
+                                <div class="flex items-baseline">
+                                    <span class="text-2xl font-semibold mr-1" style="color: var(--ios-accent)">₹</span>
+                                    <span id="cms-udyam-price-new" class="text-5xl font-bold text-white">599</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/919102288372" target="_blank" class="w-full py-3.5 ios-btn ios-btn-primary text-sm font-semibold shadow-lg shadow-blue-500/30">Get Started Now</a>
+                    </div>
+                </div>
+
+                <!-- 8. Why Choose Us -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-2" style="transition-delay: 0.1s;">
+                    <h3 id="cms-udyam-why-title" class="text-xl font-bold text-white tracking-tight mb-6">Why Choose Abhay Cyber Zone?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-green-400/10 flex items-center justify-center"><i class="fa-solid fa-shield-check text-green-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">100% Genuine Govt Process</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-400/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-yellow-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Super Fast Approval ⚡</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-400/10 flex items-center justify-center"><i class="fa-solid fa-bullseye text-blue-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Zero Error – Expert Handling</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-pink-400/10 flex items-center justify-center"><i class="fa-solid fa-tags text-pink-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Affordable Pricing 💰</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-purple-400/10 flex items-center justify-center"><i class="fa-solid fa-headset text-purple-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Friendly Support (Local Language)</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-red-400/10 flex items-center justify-center"><i class="fa-solid fa-map-location-dot text-red-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Trusted Local Brand in Biraul</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. FAQ Section -->
+            <div class="max-w-4xl mx-auto ios-fade-up mb-16">
+                <div class="text-center mb-10">
+                    <h2 id="cms-udyam-faq-title" class="text-3xl font-bold text-white tracking-tight mb-3">Frequently Asked Questions</h2>
+                    <p class="text-white/50 text-sm uppercase tracking-widest font-semibold">Clear Your Doubts</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Col 1 -->
+                    <div class="space-y-4">
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq1-q">Udyam Registration kya hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq1-a">
+                                Yeh Government of India ka official MSME certificate hai jo chhote/bade business ko legal recognition deta hai.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq2-q">Kya ye compulsory hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq2-a">
+                                Compulsory nahi hai, lekin current account open karne, loan lene aur govt benefits ke liye highly recommended hai.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq3-q">Kya bina GST ke ban sakta hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq3-a">
+                                Haan, aap bina GST number ke bhi aasaani se Udyam registration ke liye apply kar sakte hain.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq4-q">Kya student apply kar sakta hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq4-a">
+                                Haan, agar koi student freelance work, blogging, ya koi chhota business run kar raha hai toh wo apply kar sakta hai.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq5-q">Kitne time me certificate milta hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq5-a">
+                                Mostly same day ya processing clear hone par 24 hours ke andar Udyam certificate mil jata hai.
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Col 2 -->
+                    <div class="space-y-4">
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq6-q">Kya ye lifetime valid hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq6-a">
+                                Haan, Udyam certificate lifetime valid hota hai, isme kisi tarah ka renewal required nahi hota.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq7-q">Kya loan me help karta hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq7-a">
+                                Bilkul, Mudra loan aur government MSME schemes/subsidy ke liye banks Udyam registration sabse pehle maangte hain.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq8-q">Kya khud apply kar sakte hain?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq8-a">
+                                Haan, portal open hai but NIC code error ya details mistake se bachne ke liye expert help best rehti hai.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq9-q">Aadhaar par multiple registration?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq9-a">
+                                Nahi, ek Aadhaar par ek hi registration hota hai. Agar business multiple hain toh usi ek certificate me add kiye jate hain.
+                            </div>
+                        </details>
+                        <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                            <summary class="p-5 font-semibold flex justify-between items-center text-white/90 text-sm">
+                                <span id="cms-udyam-faq10-q">Kya ye free hai?</span>
+                                <div class="w-7 h-7 flex-shrink-0 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]"><i class="fa-solid fa-chevron-down text-[10px]"></i></div>
+                            </summary>
+                            <div class="px-5 pb-5 pt-1 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-1" id="cms-udyam-faq10-a">
+                                Govt portal fee zero hai. Humara minor charge sirf professional form filling, expert guidance aur support ka hai.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Final CTA -->
+            <div class="ios-glass-heavy p-10 rounded-[28px] text-center relative overflow-hidden ios-fade-up border border-[var(--ios-accent)]">
+                <div class="absolute inset-0 opacity-20" style="background: linear-gradient(135deg, transparent, var(--ios-accent), transparent);"></div>
+                <div class="relative z-10">
+                    <p class="text-[var(--ios-accent)] font-bold tracking-widest uppercase mb-2 text-sm">Local se Legal, Legal se Powerful! 🚀</p>
+                    <h3 id="cms-udyam-cta-title" class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-8">Ab wait mat karo — apne business ko next level par le jao!</h3>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#contact" id="cms-udyam-btn-cta1" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base font-semibold">
+                            Book Now
+                        </a>
+                        <a href="https://wa.me/919102288372" target="_blank" id="cms-udyam-btn-cta2" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group font-semibold">
+                            <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- --- Footer Section --- -->
+    <footer class="relative pt-16 pb-8 z-20 overflow-hidden border-t border-white/10 ios-glass-nav rounded-t-[40px]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <div class="w-12 h-12 rounded-[12px] bg-white/10 flex items-center justify-center mr-4 shadow-sm border border-white/10 overflow-hidden">
+                            <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-xl leading-tight text-white tracking-tight">Abhay Cyber Zone</h2>
+                            <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" style="color: var(--ios-accent)">Biraul</p>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm max-w-sm mx-auto md:mx-0 font-light leading-relaxed">
+                        Your trusted digital partner. We provide fast, secure, and reliable online services directly to your fingertips.
+                    </p>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-5" style="color: var(--ios-accent)">Connect With Us</h3>
+                    <div class="flex items-center justify-center md:justify-end gap-4">
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-fb border border-white/10" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="WhatsApp Channel">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="Join WhatsApp Group">
+                            <i class="fa-solid fa-users text-sm"></i>
+                        </a>
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-tg border border-white/10" title="Telegram">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/abhaycyberzone.biraul?igsh=b3RlbXFyNTVyamxn" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-ig border border-white/10" title="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-xs font-light">&copy; 2024 Abhay Cyber Zone Biraul. All rights reserved.</p>
+                <div class="flex gap-6 text-white/40 text-xs font-light">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919102288372" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute top-0 right-0 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+        </span>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('is-open');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('is-open');
+            });
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ios-fade-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

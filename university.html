@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career & University Admission Hub | Abhay Cyber Zone Biraul</title>
+    <meta name="description" content="University admission, career guidance, form filling aur counselling – sab kuch ek hi jagah par at Abhay Cyber Zone Biraul.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Apple System Typography & Core Variables */
+        :root {
+            --ios-accent: #0A84FF; /* iOS Blue */
+            --ios-overlay: rgba(0, 0, 0, 0.6);
+            --ios-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, "Segoe UI", Roboto, Ubuntu, sans-serif;
+            background-color: #000;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Fullscreen Background Setup */
+        .bg-system {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+        
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--ios-overlay);
+            z-index: -1;
+            transition: background 0.5s var(--ios-bezier);
+        }
+
+        /* Glassmorphism Classes */
+        .ios-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .ios-glass-heavy {
+            background: rgba(30, 30, 30, 0.65);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+        }
+
+        .ios-glass-nav {
+            background: rgba(20, 20, 20, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Micro-Interactions & Animations */
+        .ios-btn {
+            transition: all 0.4s var(--ios-bezier);
+            cursor: pointer;
+            border-radius: 9999px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ios-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ios-btn:active {
+            transform: scale(0.96) !important;
+            opacity: 0.9;
+        }
+
+        .ios-btn-primary {
+            background-color: var(--ios-accent);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(var(--ios-accent-rgb), 0.4);
+        }
+
+        .ios-card {
+            transition: all 0.5s var(--ios-bezier);
+        }
+        .ios-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(10, 132, 255, 0.4);
+            box-shadow: 0 15px 45px rgba(10, 132, 255, 0.2);
+        }
+
+        /* Scroll Animation Utility */
+        .ios-fade-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.7s var(--ios-bezier);
+        }
+        .ios-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Text Utilities */
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Social Media Hover Effects & Active Click --- */
+        .social-link {
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+        .social-link:active {
+            transform: scale(0.95);
+        }
+        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.6); box-shadow: 0 0 15px rgba(24, 119, 242, 0.3); }
+        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.6); box-shadow: 0 0 15px rgba(37, 211, 102, 0.3); }
+        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.6); box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
+        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.6); box-shadow: 0 0 15px rgba(225, 48, 108, 0.3); }
+        
+        /* --- Floating Social Bar (Left) --- */
+        .floating-social-bar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 10px;
+        }
+        @media (max-width: 768px) {
+            .floating-social-bar {
+                display: none;
+            }
+        }
+        
+        /* --- WhatsApp Floating Button Animation --- */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-float-btn {
+            animation: pulse-ring 2s infinite;
+        }
+        .wa-float-btn:active {
+            transform: scale(0.9) !important;
+        }
+
+        /* --- Mobile Menu Styling --- */
+        .mobile-menu-wrapper {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 80px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px);
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .mobile-menu-wrapper.is-open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- FAQ Accordion Fixes --- */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* Custom List Style for Services */
+        .service-list-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .service-list-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-system"></div>
+    <div class="bg-overlay" id="dynamic-overlay"></div>
+
+    <!-- --- Floating Social Media Bar (Left Side) --- -->
+    <div class="floating-social-bar ios-glass rounded-full border border-white/10 shadow-lg">
+        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" aria-label="Visit Facebook Page" title="Facebook" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb bg-white/5">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" aria-label="Join WhatsApp Channel" title="WhatsApp Channel" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa bg-white/5">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG" target="_blank" aria-label="Join WhatsApp Group" title="WhatsApp Group" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa bg-white/5">
+            <i class="fa-solid fa-users text-sm"></i>
+        </a>
+        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" aria-label="Join Telegram Channel" title="Telegram Channel" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg bg-white/5">
+            <i class="fa-brands fa-telegram text-lg"></i>
+        </a>
+        <a href="https://www.instagram.com/abhaycyberzone.biraul" target="_blank" aria-label="Visit Instagram Profile" title="Instagram" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig bg-white/5">
+            <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Trigger -->
+                <a href="index.html" aria-label="Go to Homepage" title="Abhay Cyber Zone Homepage" class="flex-shrink-0 flex items-center cursor-pointer select-none group active:scale-95 transition-transform" id="logo-trigger">
+                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-hover:border-white/30">
+                        <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" id="cms-brand-sub" style="color: var(--ios-accent)">Biraul</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" aria-label="Homepage" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
+                    <a href="index.html#services" aria-label="All Services" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Services</a>
+                    <a href="#" aria-label="University Service Page" class="text-[var(--ios-accent)] font-semibold transition-colors text-sm drop-shadow-[0_0_10px_rgba(10,132,255,0.5)]">Admission Hub</a>
+                    <a href="index.html#features" aria-label="Features Section" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Features</a>
+                    <a href="#contact" aria-label="Contact Section" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Contact</a>
+                    
+                    <a href="tel:+919102288372" aria-label="Call Abhay Cyber Zone" title="Call: +91 9102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm shadow-md shadow-[var(--ios-accent)]/30 hover:shadow-[var(--ios-accent)]/50 active:scale-95">
+                        <i class="fa-solid fa-phone mr-2 text-xs"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Toggle Mobile Menu" title="Open Menu" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90 bg-white/10 p-2 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu-wrapper md:hidden">
+            <div class="px-5 py-6 space-y-3">
+                <a href="index.html" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Home</a>
+                <a href="index.html#services" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Services</a>
+                <a href="#" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-[var(--ios-accent)] bg-[var(--ios-accent)]/10 transition-colors shadow-sm active:scale-95 border border-[var(--ios-accent)]/20">Admission Hub</a>
+                <a href="index.html#features" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Features</a>
+                <a href="#contact" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION (Powerful Banner)             -->
+    <!-- ========================================== -->
+    <main class="pt-28 pb-20 lg:pt-36 relative z-10 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="ios-glass p-10 md:p-16 rounded-[32px] text-center mb-12 relative overflow-hidden ios-fade-up">
+                <!-- Background Blur Elements -->
+                <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full blur-[80px] opacity-30" style="background: var(--ios-accent)"></div>
+                <div class="absolute -bottom-32 -right-32 w-64 h-64 rounded-full blur-[80px] opacity-10 bg-white"></div>
+                
+                <div class="relative z-10">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 shadow-lg">Government & Recognized Universities</span>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white tracking-tight text-gradient">
+                        Career & University <br class="hidden md:block"/> Admission Hub
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-[var(--ios-accent)] font-semibold mb-6">
+                        "Ab har course ka admission – School se lekar PhD tak, ek hi jagah!"
+                    </p>
+                    
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4 inline-block mx-auto mb-10 shadow-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(10,132,255,0.3)] hover:border-[var(--ios-accent)]">
+                        <p class="text-sm md:text-base font-medium text-white/90 flex flex-col md:flex-row items-center">
+                            <span class="text-[var(--ios-accent)]"><i class="fa-solid fa-graduation-cap mr-2"></i> Government & Recognized Universities me full support ke saath admission</span>
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
+                        <a href="https://wa.me/919102288372" target="_blank" aria-label="Apply Now via WhatsApp" title="Send Request on WhatsApp" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base font-semibold shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60">
+                            Apply Now
+                        </a>
+                        <a href="https://wa.me/919102288372?text=Hello,%20I%20want%20to%20book%20an%20admission%20consultation." target="_blank" aria-label="Book Consultation" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] hover:border-[#25D366]/50 hover:bg-[#25D366]/10 group font-semibold shadow-md">
+                            <i class="fa-solid fa-user-tie text-xl mr-2 transition-transform duration-300 group-hover:scale-110"></i> Book Consultation
+                        </a>
+                    </div>
+
+                    <!-- Small Trust Badges -->
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-white/5 border border-white/10 text-white/80 text-xs md:text-sm px-4 py-2 rounded-full font-medium"><i class="fa-solid fa-shield-halved text-[var(--ios-accent)] mr-1.5"></i> Trusted Guidance</span>
+                        <span class="bg-white/5 border border-white/10 text-white/80 text-xs md:text-sm px-4 py-2 rounded-full font-medium"><i class="fa-solid fa-layer-group text-[var(--ios-accent)] mr-1.5"></i> All Courses Available</span>
+                        <span class="bg-white/5 border border-white/10 text-white/80 text-xs md:text-sm px-4 py-2 rounded-full font-medium"><i class="fa-solid fa-bolt text-[var(--ios-accent)] mr-1.5"></i> Fast Admission Process</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- ABOUT / INTRO SECTION                      -->
+            <!-- ========================================== -->
+            <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up mb-12 text-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-[var(--ios-accent)] blur-[50px] opacity-10 rounded-full"></div>
+                <div class="w-16 h-16 mx-auto rounded-[16px] bg-white/10 border border-white/10 flex items-center justify-center mb-6 shadow-sm" style="color: var(--ios-accent)"><i class="fa-solid fa-compass text-3xl"></i></div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">Apne Career Ki Shuruaat Sahi Direction Me Kare</h2>
+                <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-3xl mx-auto font-light mb-8">
+                    We help students get admission in various government and recognized universities across India — academic, professional, medical, technical aur vocational courses ke liye complete support ke saath.
+                </p>
+                <div class="bg-[var(--ios-accent)]/10 inline-block px-6 py-3 rounded-xl border border-[var(--ios-accent)]/20 shadow-sm">
+                    <p class="text-sm md:text-base text-[var(--ios-accent)] font-semibold">
+                        <i class="fa-solid fa-circle-check mr-2"></i> Form se lekar admission confirmation tak – sab kuch hum handle karte hain.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- COURSES SECTION (Main Highlight)           -->
+            <!-- ========================================== -->
+            <div class="mb-16">
+                <div class="text-center mb-10 ios-fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight text-gradient">Explore Our Courses</h2>
+                    <p class="text-white/50 text-sm mt-2 uppercase tracking-widest font-semibold">All Streams & Sectors</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Academic Courses -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-[var(--ios-accent)]"><i class="fa-solid fa-book-open text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Academic Courses</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> BA, BSc, BCom</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> MA, MSc, MCom</li>
+                        </ul>
+                    </div>
+
+                    <!-- Law Courses -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.1s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-[var(--ios-accent)]"><i class="fa-solid fa-scale-balanced text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Law Courses</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> LLB, LLM</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> BA LLB</li>
+                        </ul>
+                    </div>
+
+                    <!-- Management & IT -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.2s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-[var(--ios-accent)]"><i class="fa-solid fa-laptop-code text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Management & IT</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> BBA, MBA</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> BCA, MCA</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> BSc IT</li>
+                        </ul>
+                    </div>
+
+                    <!-- Agriculture & Science -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.3s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-green-400"><i class="fa-solid fa-leaf text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Agriculture & Science</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-green-400 mr-2 mt-0.5"></i> BSc Agriculture</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-green-400 mr-2 mt-0.5"></i> Aquaculture</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-green-400 mr-2 mt-0.5"></i> Fisheries Science</li>
+                        </ul>
+                    </div>
+
+                    <!-- Medical & Paramedical -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.4s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-red-400"><i class="fa-solid fa-staff-snake text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Medical & Paramedical</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-red-400 mr-2 mt-0.5"></i> DMLT / BMLT</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-red-400 mr-2 mt-0.5"></i> Nursing, Pharmacy</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-red-400 mr-2 mt-0.5"></i> BPT / MPT, Radiology</li>
+                        </ul>
+                    </div>
+
+                    <!-- Library Courses -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.5s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-yellow-400"><i class="fa-solid fa-book text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Library Courses</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-yellow-400 mr-2 mt-0.5"></i> BLIS</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-yellow-400 mr-2 mt-0.5"></i> MLIS</li>
+                        </ul>
+                    </div>
+
+                    <!-- Hotel Management -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-orange-400"><i class="fa-solid fa-bell-concierge text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Hotel Management</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-orange-400 mr-2 mt-0.5"></i> BHM</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-orange-400 mr-2 mt-0.5"></i> Diploma Hotel Management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Technical -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.1s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-cyan-400"><i class="fa-solid fa-microchip text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Technical</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-cyan-400 mr-2 mt-0.5"></i> B.Tech / M.Tech</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-cyan-400 mr-2 mt-0.5"></i> Polytechnic</li>
+                        </ul>
+                    </div>
+
+                    <!-- Creative Courses -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.2s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-pink-400"><i class="fa-solid fa-palette text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Creative Courses</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-pink-400 mr-2 mt-0.5"></i> Mass Communication</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-pink-400 mr-2 mt-0.5"></i> Fashion Technology</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-pink-400 mr-2 mt-0.5"></i> Architecture</li>
+                        </ul>
+                    </div>
+
+                    <!-- Teaching -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.3s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-purple-400"><i class="fa-solid fa-chalkboard-user text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Teaching</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-purple-400 mr-2 mt-0.5"></i> B.Ed / M.Ed</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-purple-400 mr-2 mt-0.5"></i> D.El.Ed</li>
+                        </ul>
+                    </div>
+
+                    <!-- Vocational -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.4s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-amber-500"><i class="fa-solid fa-tractor text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Vocational</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-amber-500 mr-2 mt-0.5"></i> ITI</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-amber-500 mr-2 mt-0.5"></i> Fish Farming</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-amber-500 mr-2 mt-0.5"></i> Dairy / Poultry Farming</li>
+                        </ul>
+                    </div>
+
+                    <!-- Higher Education & Other -->
+                    <div class="ios-glass ios-card p-6 rounded-[28px] ios-fade-up" style="transition-delay: 0.5s;">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mr-3 text-[var(--ios-accent)]"><i class="fa-solid fa-user-graduate text-xl"></i></div>
+                            <h3 class="text-lg font-bold text-white tracking-tight">Higher Ed & Other</h3>
+                        </div>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> M.Phil, PhD (Full Support)</li>
+                            <li class="service-list-item"><i class="fa-solid fa-check text-[var(--ios-accent)] mr-2 mt-0.5"></i> Yoga, B.P.Ed / M.P.Ed</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- WHY CHOOSE US & DOCUMENTS                  -->
+            <!-- ========================================== -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+                
+                <!-- Why Choose Us -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up">
+                    <h3 class="text-2xl font-bold text-white tracking-tight mb-6">Why Choose Abhay Cyber Zone?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center"><i class="fa-solid fa-handshake-angle text-[var(--ios-accent)] text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">100% Guidance & Support</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center"><i class="fa-solid fa-building-shield text-green-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Trusted Universities</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-yellow-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Easy Admission Process</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center"><i class="fa-solid fa-tags text-pink-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">Affordable Charges</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center"><i class="fa-solid fa-infinity text-purple-400 text-lg"></i></div>
+                            <span class="text-[15px] font-medium text-white/90">End-to-End Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Required Documents -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up" style="transition-delay: 0.1s;">
+                    <h3 class="text-2xl font-bold text-white tracking-tight mb-6 flex items-center"><i class="fa-solid fa-folder-open mr-3" style="color: var(--ios-accent)"></i> Required Documents</h3>
+                    
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[var(--ios-accent)] transition-colors"><i class="fa-solid fa-fingerprint w-6 text-center mr-3 text-white/50"></i> <span class="font-medium">Aadhaar Card</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[var(--ios-accent)] transition-colors"><i class="fa-solid fa-file-lines w-6 text-center mr-3 text-white/50"></i> <span class="font-medium">10th / 12th Marksheet</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[var(--ios-accent)] transition-colors"><i class="fa-solid fa-graduation-cap w-6 text-center mr-3 text-white/50"></i> <span class="font-medium">Graduation (if required)</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[var(--ios-accent)] transition-colors"><i class="fa-solid fa-image w-6 text-center mr-3 text-white/50"></i> <span class="font-medium">Passport Photo & Signature</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[var(--ios-accent)] transition-colors"><i class="fa-solid fa-address-book w-6 text-center mr-3 text-white/50"></i> <span class="font-medium">Mobile Number & Email ID</span></li>
+                    </ul>
+                    
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center">
+                        <p class="text-xs text-blue-200"><i class="fa-solid fa-circle-exclamation mr-1"></i> Documents course ke hisaab se vary kar sakte hain</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- FEES SECTION                               -->
+            <!-- ========================================== -->
+            <div class="ios-glass ios-card p-8 md:p-12 rounded-[32px] text-center mb-12 relative overflow-hidden ios-fade-up border border-[var(--ios-accent)]/20 shadow-[0_10px_40px_rgba(10,132,255,0.1)]">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--ios-accent)] blur-[80px] opacity-20 rounded-full"></div>
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">Fees Information</h3>
+                    <p class="text-white/80 text-base md:text-lg font-light leading-relaxed mb-8">
+                        "Sabhi courses ki fees alag-alag hoti hai. Exact fees, scholarship benefits aur details ke liye direct WhatsApp par contact kare."
+                    </p>
+                    <a href="https://wa.me/919102288372?text=Hello,%20mujhe%20course%20fees%20ke%20baare%20me%20jaanna%20hai." target="_blank" class="inline-flex items-center px-8 py-3.5 ios-btn ios-btn-primary text-base font-semibold shadow-lg shadow-blue-500/40">
+                        <i class="fa-solid fa-wallet mr-2 text-white"></i> Get Fees Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- PROCESS SECTION                            -->
+            <!-- ========================================== -->
+            <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up mb-12">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-xl font-bold text-white tracking-tight flex items-center"><i class="fa-solid fa-list-check mr-3" style="color: var(--ios-accent)"></i> Process Section</h3>
+                    <span class="text-[10px] text-[var(--ios-accent)] bg-[var(--ios-accent)]/10 px-3 py-1 rounded-full border border-[var(--ios-accent)]/20 uppercase tracking-widest font-semibold hidden md:inline-block">Simple aur tension-free process</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative mt-4">
+                    <!-- Connecting Line (Desktop) -->
+                    <div class="hidden lg:block absolute top-10 left-10 right-10 h-0.5 bg-white/10 z-0"></div>
+                    
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50 hover:scale-110 transition-transform duration-300" style="border-color: var(--ios-accent)">1</div>
+                        <h4 class="font-semibold text-white mb-2 text-sm">Contact Us</h4>
+                        <p class="text-xs text-white/50">Contact on WhatsApp.</p>
+                    </div>
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50 hover:scale-110 transition-transform duration-300" style="border-color: var(--ios-accent)">2</div>
+                        <h4 class="font-semibold text-white mb-2 text-sm">Course Select</h4>
+                        <p class="text-xs text-white/50">Course aur university select kare.</p>
+                    </div>
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-black/50 hover:scale-110 transition-transform duration-300" style="border-color: var(--ios-accent)">3</div>
+                        <h4 class="font-semibold text-white mb-2 text-sm">Submit Docs</h4>
+                        <p class="text-xs text-white/50">Required documents submit kare.</p>
+                    </div>
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-[var(--ios-accent)] text-white shadow-[0_0_15px_rgba(10,132,255,0.5)] hover:scale-110 transition-transform duration-300">4</div>
+                        <h4 class="font-semibold text-white mb-2 text-sm">Admission</h4>
+                        <p class="text-xs text-white/50">Aapka admission confirm.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- FAQ SECTION                                -->
+            <!-- ========================================== -->
+            <div class="max-w-4xl mx-auto ios-fade-up mb-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white tracking-tight mb-3">Frequently Asked Questions</h2>
+                    <p class="text-white/50 text-sm uppercase tracking-widest font-semibold">Clear Your Doubts</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                        <summary class="p-6 font-semibold flex justify-between items-center text-white/90 text-[15px]">
+                            <span>Q1. Kya sab courses available hain?</span>
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-2">
+                            👉 Haan, India ki multiple recognized universities ke through lagbhag har course available hai.
+                        </div>
+                    </details>
+
+                    <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                        <summary class="p-6 font-semibold flex justify-between items-center text-white/90 text-[15px]">
+                            <span>Q2. Medical / Technical courses milte hain?</span>
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-2">
+                            👉 Haan, Medical, Paramedical, Nursing, B.Tech, aur Polytechnic jaise technical courses me full support ke saath admission karwaya jata hai.
+                        </div>
+                    </details>
+
+                    <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                        <summary class="p-6 font-semibold flex justify-between items-center text-white/90 text-[15px]">
+                            <span>Q3. PhD me help milti hai?</span>
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-2">
+                            👉 Haan, PhD me admission se lekar thesis submission tak ka full support available hai.
+                        </div>
+                    </details>
+
+                    <details class="ios-glass group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-all duration-300">
+                        <summary class="p-6 font-semibold flex justify-between items-center text-white/90 text-[15px]">
+                            <span>Q4. Process easy hai?</span>
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 group-open:rotate-180 group-open:bg-[var(--ios-accent)]">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 text-white/60 text-sm leading-relaxed border-t border-white/5 mt-2">
+                            👉 Haan, bahut aasaan hai. Hum admission related saara headache (form filling, document submission) handle karte hain.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- FINAL CTA SECTION (Very Important)         -->
+            <!-- ========================================== -->
+            <div id="contact" class="ios-glass-heavy p-10 md:p-16 rounded-[32px] text-center relative overflow-hidden ios-fade-up border border-[var(--ios-accent)]">
+                <div class="absolute inset-0 opacity-20" style="background: linear-gradient(135deg, transparent, var(--ios-accent), transparent);"></div>
+                <div class="relative z-10">
+                    <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Aaj Hi Apne Career Ka Next Step Le</h3>
+                    <p class="text-white/70 mb-8 font-light text-lg max-w-2xl mx-auto">Admission ka pura process hum handle karenge – aap bas start kare.</p>
+                    
+                    <a href="tel:+919102288372" aria-label="Call for Help" title="Call Us Direct" class="inline-block hover:-translate-y-1 transition-transform mb-8 active:scale-95">
+                        <p class="text-white/90 text-lg font-bold flex items-center justify-center hover:text-[var(--ios-accent)] transition-colors bg-white/5 px-6 py-2.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-phone-volume text-[var(--ios-accent)] mr-3"></i> Call: <span class="tracking-widest ml-2">9102288372</span>
+                        </p>
+                    </a>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="tel:+919102288372" class="w-full sm:w-auto px-10 py-4 ios-btn ios-btn-primary text-base font-bold text-white shadow-xl shadow-[var(--ios-accent)]/40 hover:shadow-[var(--ios-accent)]/60 active:scale-95">
+                            Call Now
+                        </a>
+                        <a href="https://wa.me/919102288372" target="_blank" class="w-full sm:w-auto px-10 py-4 ios-btn ios-glass text-white text-base hover:bg-[#25D366]/10 hover:border-[#25D366]/50 hover:text-[#25D366] group font-semibold shadow-md active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-xl mr-2 transition-transform duration-300 group-hover:scale-110"></i> WhatsApp Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- PREMIUM BRAND FOOTER                       -->
+    <!-- ========================================== -->
+    <footer class="relative pb-12 pt-8 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ios-glass-heavy p-10 md:p-14 rounded-[40px] relative overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center text-center ios-fade-up">
+                
+                <!-- Inner Glow Overlay -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-[var(--ios-accent)] blur-[120px] opacity-10 pointer-events-none"></div>
+                <!-- Shine Reflection -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                
+                <div class="relative z-10 w-full flex flex-col items-center">
+                    
+                    <!-- Top: Logo & Name -->
+                    <div class="flex flex-col items-center mb-10">
+                        <div class="w-20 h-20 rounded-[22px] bg-white/10 border border-white/20 flex items-center justify-center shadow-[0_10px_25px_rgba(0,0,0,0.3)] mb-6 overflow-hidden backdrop-blur-md">
+                            <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="fa-solid fa-bolt text-[var(--ios-accent)] text-3xl hidden" style="display: none;"></i>
+                        </div>
+                        <h2 class="font-bold text-3xl md:text-4xl text-white tracking-tight mb-2">Abhay Cyber Zone, Biraul</h2>
+                        <p class="text-[var(--ios-accent)] text-xs md:text-sm font-semibold tracking-widest uppercase opacity-90">All Digital Services Available Here</p>
+                    </div>
+                    
+                    <!-- Middle: Interactive Contacts -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-12 w-full max-w-xl mx-auto">
+                        <a href="tel:+919102288372" aria-label="Call Phone" class="ios-glass px-8 py-4 rounded-full text-white/90 hover:text-white text-sm md:text-base font-semibold transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(10,132,255,0.4)] hover:border-[var(--ios-accent)]/50 flex items-center active:scale-95 group w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-phone text-lg mr-3 text-[var(--ios-accent)] group-hover:animate-pulse"></i> +91 9102288372
+                        </a>
+                        <a href="mailto:example@email.com" aria-label="Send Email" class="ios-glass px-8 py-4 rounded-full text-white/90 hover:text-white text-sm md:text-base font-semibold transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(10,132,255,0.4)] hover:border-[var(--ios-accent)]/50 flex items-center active:scale-95 group w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-envelope text-lg mr-3 text-[var(--ios-accent)] group-hover:-translate-y-1 transition-transform"></i> example@email.com
+                        </a>
+                    </div>
+
+                    <!-- Bottom: Premium Social Icons Grid -->
+                    <div class="flex items-center justify-center gap-4 md:gap-6 mb-10 w-full flex-wrap">
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" aria-label="Visit Facebook Page" title="Facebook" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#1877F2] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#1877F2]/60 hover:bg-[#1877F2]/10 hover:shadow-[0_10px_25px_rgba(24,119,242,0.5)] active:scale-95">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG" target="_blank" aria-label="Join WhatsApp Group" title="WhatsApp Group" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#25D366] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 hover:shadow-[0_10px_25px_rgba(37,211,102,0.5)] active:scale-95">
+                            <i class="fa-solid fa-users text-lg"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" aria-label="Join WhatsApp Channel" title="WhatsApp Channel" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#25D366] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 hover:shadow-[0_10px_25px_rgba(37,211,102,0.5)] active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </a>
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" aria-label="Join Telegram Channel" title="Telegram Channel" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#0088cc] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#0088cc]/60 hover:bg-[#0088cc]/10 hover:shadow-[0_10px_25px_rgba(0,136,204,0.5)] active:scale-95">
+                            <i class="fa-brands fa-telegram text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/abhaycyberzone.biraul" target="_blank" aria-label="Visit Instagram Profile" title="Instagram" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#E1306C] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#E1306C]/60 hover:bg-[#E1306C]/10 hover:shadow-[0_10px_25px_rgba(225,48,108,0.5)] active:scale-95">
+                            <i class="fa-brands fa-instagram text-2xl"></i>
+                        </a>
+                    </div>
+
+                    <!-- Copyright Line -->
+                    <div class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-white/40 text-xs font-light tracking-wide">&copy; 2024 Abhay Cyber Zone, Biraul. Owner: Abhay Kumar.</p>
+                        <div class="flex gap-6 text-white/40 text-xs font-light tracking-wide">
+                            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Floating WhatsApp Button -->
+    <a href="https://wa.me/919102288372" target="_blank" aria-label="Chat with us on WhatsApp" title="Open WhatsApp Chat" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn cursor-pointer" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute top-0 right-0 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+        </span>
+    </a>
+
+    <!-- Interaction Scripts -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('is-open');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('is-open');
+            });
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ios-fade-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

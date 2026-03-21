@@ -6,8 +6,10 @@
     <title>Abhay Cyber Zone Biraul | Fast & Trusted Online Services</title>
     <meta name="description" content="All digital services available at one place with fast processing and trusted support.">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -103,13 +105,16 @@
             transition: all 0.5s var(--ios-bezier);
         }
         .ios-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px) scale(1.03);
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.25);
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
         }
+        .ios-card:active {
+            transform: translateY(0px) scale(0.98);
+        }
         
-        /* New: Clickable Card Hover Glow */
+        /* Clickable Card Hover Glow */
         .ios-card-link:hover {
             box-shadow: 0 15px 45px rgba(10, 132, 255, 0.2);
             border-color: rgba(10, 132, 255, 0.4);
@@ -144,11 +149,11 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Custom Scrollbar for Admin */
-        .admin-scroll::-webkit-scrollbar { width: 6px; }
-        .admin-scroll::-webkit-scrollbar-track { background: transparent; }
-        .admin-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-        .admin-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
 
         /* Text Utilities */
         .text-gradient {
@@ -164,10 +169,13 @@
         .social-link:hover {
             transform: scale(1.15);
         }
-        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.5); }
-        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.5); }
-        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.5); }
-        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.5); }
+        .social-link:active {
+            transform: scale(0.95);
+        }
+        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.6); box-shadow: 0 0 15px rgba(24, 119, 242, 0.3); }
+        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.6); box-shadow: 0 0 15px rgba(37, 211, 102, 0.3); }
+        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.6); box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
+        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.6); box-shadow: 0 0 15px rgba(225, 48, 108, 0.3); }
         
         /* --- Floating Social Bar (Left) --- */
         .floating-social-bar {
@@ -196,194 +204,464 @@
         .wa-float-btn {
             animation: pulse-ring 2s infinite;
         }
+        .wa-float-btn:active {
+            transform: scale(0.9) !important;
+        }
 
-        /* --- FAQ Accordion Fixes --- */
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
+        /* --- Mobile Menu Styling --- */
+        .mobile-menu-wrapper {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 80px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px);
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .mobile-menu-wrapper.is-open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
+    <!-- Background Elements -->
     <div class="bg-system"></div>
     <div class="bg-overlay" id="dynamic-overlay"></div>
 
+    <!-- Floating Social Media Bar (Left Side) -->
     <div class="floating-social-bar ios-glass rounded-full border border-white/10 shadow-lg">
-        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb" title="Facebook">
+        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" aria-label="Visit Facebook Page" title="Facebook" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb bg-white/5">
             <i class="fa-brands fa-facebook-f text-lg"></i>
         </a>
-        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="WhatsApp Channel">
+        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" aria-label="Join WhatsApp Channel" title="WhatsApp Channel" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa bg-white/5">
             <i class="fa-brands fa-whatsapp text-lg"></i>
         </a>
-        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="Join WhatsApp Group">
+        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG" target="_blank" aria-label="Join WhatsApp Group" title="WhatsApp Group" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa bg-white/5">
             <i class="fa-solid fa-users text-sm"></i>
         </a>
-        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg" title="Telegram">
+        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" aria-label="Join Telegram Channel" title="Telegram Channel" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg bg-white/5">
             <i class="fa-brands fa-telegram text-lg"></i>
         </a>
-        <a href="https://www.instagram.com/abhaycyberzone.biraul?igsh=b3RlbXFyNTVyamxn" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig" title="Instagram">
+        <a href="https://www.instagram.com/abhaycyberzone.biraul" target="_blank" aria-label="Visit Instagram Profile" title="Instagram" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig bg-white/5">
             <i class="fa-brands fa-instagram text-lg"></i>
         </a>
     </div>
 
+    <!-- Sticky Navigation -->
     <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
-                <div class="flex-shrink-0 flex items-center cursor-pointer select-none group" id="logo-trigger" title="Abhay Cyber Zone">
-                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-active:scale-95">
+                <!-- Logo & Trigger -->
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer select-none group active:scale-95 transition-transform" id="logo-trigger" title="Abhay Cyber Zone">
+                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-hover:border-white/30">
                         <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
                     </div>
                     <div>
-                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-brand-name">Abhay Cyber Zone</h1>
                         <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" id="cms-brand-sub" style="color: var(--ios-accent)">Biraul</p>
                     </div>
-                </div>
+                </a>
 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
+                    <a href="#home" class="text-[var(--ios-accent)] font-semibold transition-colors text-sm">Home</a>
                     <a href="#services" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-services">Services</a>
-                    <a href="gst.html" id="cms-nav-gst-link" class="text-white/80 hover:text-white font-medium transition-colors text-sm">GST Service</a>
                     <a href="#features" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-features">Features</a>
                     <a href="#contact" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-contact">Contact</a>
-                    <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm">
+                    <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm active:scale-95 shadow-md shadow-[var(--ios-accent)]/30 hover:shadow-[var(--ios-accent)]/50">
                         <i class="fa-solid fa-phone mr-2 text-xs"></i> Call Now
                     </a>
                 </div>
 
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button id="mobile-menu-btn" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90 bg-white/10 p-2 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 top-20 ios-glass border-t-0 border-x-0 rounded-none border-b border-white/10">
-            <div class="px-4 py-4 space-y-1">
-                <a href="#home" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">Home</a>
-                <a href="#services" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-services">Services</a>
-                <a href="gst.html" id="cms-nav-gst-link-mobile" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">GST Service</a>
-                <a href="#features" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-features">Features</a>
-                <a href="#contact" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-contact">Contact</a>
+        <!-- Mobile Menu (Glass) -->
+        <div id="mobile-menu" class="mobile-menu-wrapper md:hidden">
+            <div class="px-5 py-6 space-y-3">
+                <a href="#home" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-[var(--ios-accent)] bg-[var(--ios-accent)]/10 transition-colors shadow-sm active:scale-95 border border-[var(--ios-accent)]/20">Home</a>
+                <a href="#services" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Services</a>
+                <a href="#features" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Features</a>
+                <a href="#contact" class="block px-5 py-3.5 rounded-[14px] text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors shadow-sm active:scale-95">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="relative pt-32 pb-20 lg:pt-56 lg:pb-40 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+    <!-- ========================================== -->
+    <!-- 1. HERO SECTION (High Conversion Upgrade)  -->
+    <!-- ========================================== -->
+    <section id="home" class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden flex flex-col justify-center min-h-[90vh]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
-            <span class="inline-block py-1.5 px-4 rounded-full ios-glass border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 ios-fade-up shadow-lg" id="cms-hero-badge">
-                #1 Digital Service Provider
-            </span>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 ios-fade-up text-gradient" style="transition-delay: 0.1s;" id="cms-hero-title">
-                Fast & Trusted <br class="hidden md:block" /> 
-                Online Services
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 ios-fade-up text-gradient" style="transition-delay: 0.1s;">
+                Har Digital Kaam Ab Ghar Baithe <br class="hidden md:block"/> – Fast, Easy & Trusted!
             </h1>
-            <p class="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 ios-fade-up font-normal leading-relaxed" style="transition-delay: 0.2s;" id="cms-hero-tagline">
-                All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.
+            
+            <p class="mt-4 text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-10 ios-fade-up font-light leading-relaxed" style="transition-delay: 0.2s;">
+                Students, Job Seekers aur Business Owners ke liye complete online solution – bina line, bina tension.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 ios-fade-up" style="transition-delay: 0.3s;">
-                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base">
-                    Contact Now
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 ios-fade-up mb-12" style="transition-delay: 0.3s;">
+                <a href="https://wa.me/919102288372" target="_blank" class="w-full sm:w-auto px-10 py-4 ios-btn ios-btn-primary text-base font-bold shadow-xl shadow-blue-500/40 hover:shadow-blue-500/60 active:scale-95">
+                    Apply Now
                 </a>
-                <a href="https://wa.me/919102288372" target="_blank" id="cms-hero-wa" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group">
-                    <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Us
+                <a href="https://wa.me/919102288372" target="_blank" class="w-full sm:w-auto px-8 py-4 ios-btn ios-glass text-white text-base hover:text-[#25D366] hover:bg-[#25D366]/10 hover:border-[#25D366]/50 group font-semibold shadow-md active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2 transition-transform duration-300 group-hover:scale-110"></i> Chat on WhatsApp
                 </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center gap-3 ios-fade-up" style="transition-delay: 0.4s;">
+                <span class="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs md:text-sm text-white/90 font-medium flex items-center shadow-sm">
+                    <i class="fa-solid fa-bolt text-yellow-400 mr-2 text-base"></i> Fast Service
+                </span>
+                <span class="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs md:text-sm text-white/90 font-medium flex items-center shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-green-400 mr-2 text-base"></i> Trusted Local Center
+                </span>
+                <span class="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs md:text-sm text-white/90 font-medium flex items-center shadow-sm">
+                    <i class="fa-solid fa-circle-check text-blue-400 mr-2 text-base"></i> 100% Accurate Work
+                </span>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 relative section-toggle">
+    <!-- ========================================== -->
+    <!-- 2. MODERN DIGITAL LIFE HOOK SECTION        -->
+    <!-- ========================================== -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ios-glass ios-card p-8 md:p-12 rounded-[32px] text-center ios-fade-up relative overflow-hidden border border-[var(--ios-accent)]/20 shadow-[0_10px_40px_rgba(10,132,255,0.1)]">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-[var(--ios-accent)] blur-[60px] opacity-20 rounded-full"></div>
+                
+                <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-8">Aaj ke Digital Zamane me...</h2>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-10">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 w-full md:w-1/3 flex flex-col items-center">
+                        <i class="fa-solid fa-burger text-3xl text-orange-400 mb-3"></i>
+                        <p class="text-sm text-white/90 font-medium">Food online order hota hai</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 w-full md:w-1/3 flex flex-col items-center">
+                        <i class="fa-solid fa-plane-departure text-blue-400 text-3xl mb-3"></i>
+                        <p class="text-sm text-white/90 font-medium">Travel apps se booking hoti hai</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 w-full md:w-1/3 flex flex-col items-center">
+                        <i class="fa-solid fa-bag-shopping text-pink-400 text-3xl mb-3"></i>
+                        <p class="text-sm text-white/90 font-medium">Shopping ghar baithe hoti hai</p>
+                    </div>
+                </div>
+
+                <p class="text-lg md:text-xl text-white/80 font-light mb-6 italic">
+                    "Toh phir form filling aur digital services ke liye line me kyun khade ho?"
+                </p>
+                <div class="inline-block bg-[var(--ios-accent)]/10 border border-[var(--ios-accent)]/30 rounded-xl p-4 px-6">
+                    <h3 class="text-lg md:text-xl font-bold text-[var(--ios-accent)] tracking-tight">Abhay Cyber Zone Biraul – aapka har digital kaam ab direct mobile par.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. OUR MISSION SECTION                     -->
+    <!-- ========================================== -->
+    <section class="py-12 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 ios-fade-up">
-                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">What We Do</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Premium Services</h3>
+            <div class="ios-glass-heavy p-8 md:p-12 rounded-[32px] ios-fade-up relative overflow-hidden flex flex-col md:flex-row items-center gap-10 border border-white/10">
+                <div class="w-full md:w-1/2 relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Hamari Soch Sirf Service Nahi – Solution Hai</h2>
+                    <p class="text-base md:text-lg text-white/70 mb-8 font-light leading-relaxed">
+                        We focus on solving real problems of students, job seekers, and business owners through smart digital intervention.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center text-white/90 text-sm font-medium">
+                            <i class="fa-solid fa-circle-check text-[var(--ios-accent)] mr-3 text-lg"></i> Accurate Work
+                        </div>
+                        <div class="flex items-center text-white/90 text-sm font-medium">
+                            <i class="fa-solid fa-circle-check text-[var(--ios-accent)] mr-3 text-lg"></i> Fast Processing
+                        </div>
+                        <div class="flex items-center text-white/90 text-sm font-medium">
+                            <i class="fa-solid fa-circle-check text-[var(--ios-accent)] mr-3 text-lg"></i> Trusted Guidance
+                        </div>
+                        <div class="flex items-center text-white/90 text-sm font-medium">
+                            <i class="fa-solid fa-circle-check text-[var(--ios-accent)] mr-3 text-lg"></i> Reliable Support
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 relative z-10 flex justify-center">
+                    <div class="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-8 relative shadow-2xl">
+                        <i class="fa-solid fa-quote-left text-4xl text-white/20 absolute top-4 left-4"></i>
+                        <p class="text-xl md:text-2xl font-semibold text-white tracking-wide text-center mt-6 leading-snug">
+                            "Hum sirf kaam complete nahi karte — <span class="text-[var(--ios-accent)]">hum usse perfect banate hain.</span>"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. PROBLEM -> SOLUTION SECTION (Emotional) -->
+    <!-- ========================================== -->
+    <section class="py-16 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 ios-fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Kya Ye Problems Aapko Bhi Face Hoti Hain?</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ios-fade-up">
+                <div class="ios-glass p-6 rounded-[24px] border-red-500/30 bg-red-500/5 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-calendar-xmark text-red-400 text-2xl"></i>
+                    </div>
+                    <p class="text-white/90 font-medium">Last date miss ho jata hai</p>
+                </div>
+                
+                <div class="ios-glass p-6 rounded-[24px] border-orange-500/30 bg-orange-500/5 flex flex-col items-center text-center transition-transform hover:-translate-y-1" style="transition-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-file-circle-xmark text-orange-400 text-2xl"></i>
+                    </div>
+                    <p class="text-white/90 font-medium">Form galat fill ho jata hai</p>
+                </div>
+
+                <div class="ios-glass p-6 rounded-[24px] border-yellow-500/30 bg-yellow-500/5 flex flex-col items-center text-center transition-transform hover:-translate-y-1" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-full bg-yellow-500/10 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-file-circle-exclamation text-yellow-400 text-2xl"></i>
+                    </div>
+                    <p class="text-white/90 font-medium">Documents incomplete hote hain</p>
+                </div>
             </div>
 
+            <div class="ios-glass-heavy p-6 md:p-8 rounded-[24px] border-green-500/40 bg-green-500/10 text-center ios-fade-up shadow-[0_10px_30px_rgba(34,197,94,0.15)]" style="transition-delay: 0.3s;">
+                <p class="text-xl md:text-2xl font-bold text-green-400 tracking-tight flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <i class="fa-solid fa-face-smile-beam text-3xl"></i> Ab tension lene ki zarurat nahi — hum sab handle karenge.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. WHAT WE OFFER (Services Overview)       -->
+    <!-- ========================================== -->
+    <section id="services" class="py-24 relative section-toggle border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 ios-fade-up">
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">What We Offer</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Our Premium Services</h3>
+                <p class="text-white/60 text-lg font-light max-w-2xl mx-auto">Sab kuch ek hi jagah – fast, simple aur reliable.</p>
+            </div>
+
+            <!-- Enhanced Categories Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10 ios-fade-up">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center flex flex-col items-center justify-center transition-colors hover:bg-white/10 hover:border-[var(--ios-accent)]/50 cursor-pointer" onclick="document.getElementById('cms-s5-link').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fa-solid fa-laptop-code text-[var(--ios-accent)] text-xl mb-2"></i>
+                    <span class="text-xs font-medium text-white/90">Computer Certification</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center flex flex-col items-center justify-center transition-colors hover:bg-white/10 hover:border-[var(--ios-accent)]/50 cursor-pointer" onclick="document.getElementById('cms-s6-link').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fa-solid fa-user-graduate text-[var(--ios-accent)] text-xl mb-2"></i>
+                    <span class="text-xs font-medium text-white/90">Student & Academic</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center flex flex-col items-center justify-center transition-colors hover:bg-white/10 hover:border-[var(--ios-accent)]/50 cursor-pointer" onclick="document.getElementById('cms-s6-link').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fa-solid fa-briefcase text-[var(--ios-accent)] text-xl mb-2"></i>
+                    <span class="text-xs font-medium text-white/90">Job & Scholarship</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center flex flex-col items-center justify-center transition-colors hover:bg-white/10 hover:border-[var(--ios-accent)]/50 cursor-pointer" onclick="document.getElementById('cms-s6-link').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fa-solid fa-id-card text-[var(--ios-accent)] text-xl mb-2"></i>
+                    <span class="text-xs font-medium text-white/90">Document Work</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center flex flex-col items-center justify-center transition-colors hover:bg-white/10 hover:border-[var(--ios-accent)]/50 cursor-pointer col-span-2 md:col-span-1" onclick="document.getElementById('cms-s6-link').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fa-solid fa-headset text-[var(--ios-accent)] text-xl mb-2"></i>
+                    <span class="text-xs font-medium text-white/90">Digital Help Services</span>
+                </div>
+            </div>
+
+            <!-- Existing Premium Clickable Service Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="gst.html" id="cms-s1-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)]">
+                <!-- S1: GST Registration -->
+                <a href="gst.html" id="cms-s1-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group">
                     <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-file-invoice-dollar" id="cms-s1-icon"></i>
                     </div>
                     <div class="flex justify-between items-start">
                         <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s1-title">GST Registration</h4>
-                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1"></i>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
                     </div>
-                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance. Click to learn more.</p>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
                 </a>
 
-                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                <!-- S2: PAN Card Service -->
+                <a href="pan.html" id="cms-s2-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-regular fa-id-card" id="cms-s2-icon"></i>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s2-title">PAN Card Service</h4>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s2-title">PAN Card Service</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
                     <p class="text-white/60 text-sm leading-relaxed" id="cms-s2-desc">Apply for a new PAN card or quickly update existing details with our fast-track processing.</p>
-                </div>
+                </a>
 
-                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                <!-- S3: FSSAI Licence -->
+                <a href="fssai.html" id="cms-s3-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-utensils" id="cms-s3-icon"></i>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s3-title">FSSAI Licence</h4>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s3-title">FSSAI Licence</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
                     <p class="text-white/60 text-sm leading-relaxed" id="cms-s3-desc">Get your food business officially registered with the mandatory FSSAI certification quickly.</p>
-                </div>
+                </a>
 
-                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.3s;">
-                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                <!-- S4: Udyam Registration -->
+                <a href="udyam.html" id="cms-s4-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-industry" id="cms-s4-icon"></i>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s4-title">Udyam Registration</h4>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s4-title">Udyam Registration</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
                     <p class="text-white/60 text-sm leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
-                </div>
+                </a>
 
-                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.4s;">
-                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                <!-- S5: Computer Course Certificate -->
+                <a href="computer.html" id="cms-s5-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.4s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-certificate" id="cms-s5-icon"></i>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s5-title">Computer Course Certificate</h4>
-                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s5-desc">Get certified for your computer skills even without formal training. We provide certificates for courses like DCA, ADCA, Typing, Tally, and more.</p>
-                </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s5-title">Computer Course Certificate</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s5-desc">Get certified for your computer skills even without formal training. We provide certificates for courses like DCA, ADCA, Typing, Tally.</p>
+                </a>
 
-                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.5s;">
-                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                <!-- S6: Student & Academic Services -->
+                <a href="student.html" id="cms-s6-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.5s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-user-graduate" id="cms-s6-icon"></i>
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s6-title">Student & Academic Services</h4>
-                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s6-desc">Complete support for students including college admission, admit card, CLC, migration, scholarship, and other academic forms.</p>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s6-title">Student & Academic Services</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s6-desc">Complete support for students including college admission, admit card, scholarship, and other academic forms.</p>
+                </a>
+
+                <!-- S7: Career & University Admission Hub -->
+                <a href="university.html" id="cms-s7-link" class="ios-glass ios-card ios-card-link p-8 ios-fade-up block cursor-pointer outline-none focus:ring-2 focus:ring-[var(--ios-accent)] group" style="transition-delay: 0.6s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10 transition-colors" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                        <i class="fa-solid fa-university" id="cms-s7-icon"></i>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-white mb-3 tracking-tight group-hover:text-[var(--ios-accent)] transition-colors" id="cms-s7-title">Career & University Admission Hub</h4>
+                        <i class="fa-solid fa-arrow-right text-white/30 text-sm mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--ios-accent)]"></i>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s7-desc">University admission, career guidance, form filling aur counselling – sab kuch ek hi jagah par.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. SIMPLE PROCESS SECTION                  -->
+    <!-- ========================================== -->
+    <section class="py-16 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ios-glass ios-card p-10 rounded-[32px] ios-fade-up">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">Sirf 4 simple steps me aapka kaam complete</h2>
+                    <p class="text-white/50 text-sm uppercase tracking-widest font-semibold">100% Online & Easy</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative mt-6">
+                    <div class="hidden lg:block absolute top-10 left-16 right-16 h-0.5 bg-white/10 z-0"></div>
+                    
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-16 h-16 mx-auto rounded-full ios-glass flex items-center justify-center text-2xl mb-4 border-2 bg-black/50 transition-transform duration-300 hover:scale-110" style="border-color: var(--ios-accent)">
+                            <i class="fa-brands fa-whatsapp text-white/80"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-base">WhatsApp Contact</h4>
+                        <p class="text-xs text-white/60 font-light">Sabse pehle WhatsApp par message karein.</p>
+                    </div>
+                    
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-16 h-16 mx-auto rounded-full ios-glass flex items-center justify-center text-2xl mb-4 border-2 bg-black/50 transition-transform duration-300 hover:scale-110" style="border-color: var(--ios-accent)">
+                            <i class="fa-solid fa-comment-dots text-white/80"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-base">Kaam Bataye</h4>
+                        <p class="text-xs text-white/60 font-light">Apna required form ya service details bataye.</p>
+                    </div>
+                    
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-16 h-16 mx-auto rounded-full ios-glass flex items-center justify-center text-2xl mb-4 border-2 bg-black/50 transition-transform duration-300 hover:scale-110" style="border-color: var(--ios-accent)">
+                            <i class="fa-solid fa-file-arrow-up text-white/80"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-base">Documents Share Kare</h4>
+                        <p class="text-xs text-white/60 font-light">Zaruri documents safely WhatsApp par bhejein.</p>
+                    </div>
+                    
+                    <div class="text-center p-4 relative z-10">
+                        <div class="w-16 h-16 mx-auto rounded-full ios-glass flex items-center justify-center text-2xl mb-4 border-2 bg-[var(--ios-accent)] text-white shadow-[0_0_20px_rgba(10,132,255,0.5)] transition-transform duration-300 hover:scale-110">
+                            <i class="fa-solid fa-check-double"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 text-base">Result Paye</h4>
+                        <p class="text-xs text-white/60 font-light">Aapka form/certificate successfully complete.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ========================================== -->
+    <!-- 7. WHY CHOOSE US (Trust Builder)           -->
+    <!-- ========================================== -->
     <section id="features" class="py-24 relative section-toggle border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
                 
                 <div class="w-full lg:w-1/2 ios-fade-up">
-                    <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Why Choose Us</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Built on Trust & Efficiency</h3>
-                    <p class="text-white/70 text-lg mb-10 leading-relaxed font-light">
-                        At Abhay Cyber Zone, we understand your time is valuable. We eliminate the red tape and long queues, providing a seamless digital service experience right here in Biraul.
-                    </p>
+                    <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Trust Builder</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">Why Abhay Cyber Zone is Trusted?</h3>
                     
-                    <div class="space-y-8">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
-                                <i class="fa-solid fa-bolt"></i>
-                            </div>
-                            <div class="ml-5">
-                                <h4 class="text-lg font-semibold text-white tracking-tight">Fast Processing</h4>
-                                <p class="text-white/60 text-sm mt-1 leading-relaxed">Quick turnaround times for all your crucial documents.</p>
-                            </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center gap-4 transition-colors hover:border-white/20">
+                            <i class="fa-solid fa-location-dot text-red-400 text-xl"></i>
+                            <span class="text-sm font-medium text-white/90">Local Trusted Brand (Biraul)</span>
                         </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <div class="ml-5">
-                                <h4 class="text-lg font-semibold text-white tracking-tight">Trusted Service</h4>
-                                <p class="text-white/60 text-sm mt-1 leading-relaxed">100% secure handling of your personal and business data.</p>
-                            </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center gap-4 transition-colors hover:border-white/20">
+                            <i class="fa-brands fa-whatsapp text-green-400 text-xl"></i>
+                            <span class="text-sm font-medium text-white/90">Fast WhatsApp Response</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center gap-4 transition-colors hover:border-white/20">
+                            <i class="fa-solid fa-clipboard-check text-blue-400 text-xl"></i>
+                            <span class="text-sm font-medium text-white/90">Error-Free Work</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center gap-4 transition-colors hover:border-white/20">
+                            <i class="fa-solid fa-tags text-pink-400 text-xl"></i>
+                            <span class="text-sm font-medium text-white/90">Affordable Pricing</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center gap-4 transition-colors hover:border-white/20">
+                            <i class="fa-solid fa-headset text-yellow-400 text-xl"></i>
+                            <span class="text-sm font-medium text-white/90">Friendly Support</span>
                         </div>
                     </div>
                 </div>
@@ -393,10 +671,10 @@
                         <div class="rounded-[20px] overflow-hidden relative aspect-square md:aspect-video lg:aspect-square flex items-center justify-center bg-black/20">
                             <div class="absolute w-64 h-64 rounded-full blur-[80px] opacity-40" style="background: var(--ios-accent)"></div>
                             
-                            <div class="ios-glass p-8 rounded-[24px] text-center max-w-sm z-10 border border-white/20">
-                                <i class="fa-solid fa-check-circle text-5xl mb-5" style="color: var(--ios-accent)"></i>
-                                <h4 class="text-4xl font-bold mb-2 text-white">1000+</h4>
-                                <p class="text-white/70 text-sm font-medium uppercase tracking-wide">Satisfied Clients</p>
+                            <div class="ios-glass p-8 rounded-[24px] text-center max-w-sm z-10 border border-white/20 transition-transform hover:scale-105 duration-500 shadow-2xl">
+                                <i class="fa-solid fa-users text-5xl mb-5" style="color: var(--ios-accent)"></i>
+                                <h4 class="text-5xl font-bold mb-2 text-white">1000<span class="text-[var(--ios-accent)]">+</span></h4>
+                                <p class="text-white/70 text-sm font-medium uppercase tracking-wide">Happy Customers</p>
                             </div>
                         </div>
                     </div>
@@ -406,130 +684,208 @@
         </div>
     </section>
 
-    <section id="contact" class="py-24 relative section-toggle border-t border-white/5">
+    <!-- ========================================== -->
+    <!-- 8. CONNECT WITH US (Social Media Section)  -->
+    <!-- ========================================== -->
+    <section class="py-16 relative z-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ios-glass-heavy p-10 md:p-12 rounded-[32px] ios-fade-up relative overflow-hidden flex flex-col lg:flex-row items-center gap-10">
+                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500 blur-[80px] opacity-20 rounded-full"></div>
+                
+                <div class="w-full lg:w-1/2 relative z-10 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Daily updates ke liye humse jude</h2>
+                    <p class="text-white/70 mb-8 font-light text-lg">Hamesha aage rahein latest digital forms aur services ki jankari ke sath.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0">
+                        <div class="flex items-center text-white/90 text-sm font-medium"><i class="fa-solid fa-briefcase text-[var(--ios-accent)] w-5 mr-2"></i> Job Updates</div>
+                        <div class="flex items-center text-white/90 text-sm font-medium"><i class="fa-solid fa-graduation-cap text-[var(--ios-accent)] w-5 mr-2"></i> Scholarship Info</div>
+                        <div class="flex items-center text-white/90 text-sm font-medium"><i class="fa-solid fa-calendar-check text-[var(--ios-accent)] w-5 mr-2"></i> Important Dates</div>
+                        <div class="flex items-center text-white/90 text-sm font-medium"><i class="fa-solid fa-bell text-[var(--ios-accent)] w-5 mr-2"></i> Form Alerts</div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 relative z-10">
+                    <div class="flex flex-wrap justify-center lg:justify-end gap-3">
+                        <a href="https://www.instagram.com/abhaycyberzone.biraul" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl text-sm text-white font-medium flex items-center transition-all hover:shadow-[0_0_15px_rgba(225,48,108,0.5)] hover:border-[#E1306C] active:scale-95 w-[160px] justify-center">
+                            <i class="fa-brands fa-instagram text-pink-500 text-lg mr-2"></i> Instagram
+                        </a>
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl text-sm text-white font-medium flex items-center transition-all hover:shadow-[0_0_15px_rgba(24,119,242,0.5)] hover:border-[#1877F2] active:scale-95 w-[160px] justify-center">
+                            <i class="fa-brands fa-facebook text-blue-500 text-lg mr-2"></i> Facebook
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl text-sm text-white font-medium flex items-center transition-all hover:shadow-[0_0_15px_rgba(37,211,102,0.5)] hover:border-[#25D366] active:scale-95 w-[160px] justify-center">
+                            <i class="fa-brands fa-whatsapp text-green-500 text-lg mr-2"></i> WA Channel
+                        </a>
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl text-sm text-white font-medium flex items-center transition-all hover:shadow-[0_0_15px_rgba(37,211,102,0.5)] hover:border-[#25D366] active:scale-95 w-[160px] justify-center">
+                            <i class="fa-solid fa-users text-green-400 text-lg mr-2"></i> WA Group
+                        </a>
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl text-sm text-white font-medium flex items-center transition-all hover:shadow-[0_0_15px_rgba(0,136,204,0.5)] hover:border-[#0088cc] active:scale-95 w-[160px] justify-center">
+                            <i class="fa-brands fa-telegram text-blue-400 text-lg mr-2"></i> Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 9. PREMIUM CONTACT SECTION                 -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 ios-fade-up">
-                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Get In Touch</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Ready to Get Started?</h3>
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3 text-[var(--ios-accent)]">Get In Touch</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white tracking-tight">Let's Work Together</h3>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 ios-fade-up">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 ios-fade-up">
                 
-                <div class="lg:col-span-2 ios-glass p-10 rounded-[28px] flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-30" style="background: var(--ios-accent)"></div>
+                <!-- Contact Info Card -->
+                <div class="ios-glass p-8 md:p-12 rounded-[32px] relative overflow-hidden flex flex-col justify-between group shadow-2xl">
+                    <!-- Light Reflection Shine -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    <!-- Soft Neon Background Blur -->
+                    <div class="absolute -top-24 -left-24 w-72 h-72 bg-[var(--ios-accent)] blur-[100px] opacity-20 rounded-full pointer-events-none"></div>
                     
                     <div class="relative z-10">
-                        <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Contact Information</h4>
+                        <h4 class="text-2xl md:text-3xl font-bold text-white mb-10 tracking-tight">Contact Information</h4>
                         <div class="space-y-8">
-                            <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white/80 hover:text-white transition-colors group">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
-                                    <i class="fa-solid fa-phone text-lg"></i>
+                            <a href="tel:+919102288372" aria-label="Call Us" class="flex items-center text-white/80 hover:text-white transition-colors group/item active:scale-95">
+                                <div class="w-16 h-16 rounded-[20px] bg-white/5 border border-white/10 flex items-center justify-center mr-6 transition-all duration-300 group-hover/item:bg-[var(--ios-accent)]/20 group-hover/item:border-[var(--ios-accent)]/50 group-hover/item:shadow-[0_0_25px_rgba(10,132,255,0.4)] backdrop-blur-md">
+                                    <i class="fa-solid fa-phone text-xl group-hover/item:text-[var(--ios-accent)] transition-colors"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Call Us</p>
-                                    <p class="text-base font-medium">+91 9102288372</p>
+                                    <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--ios-accent)] mb-1 opacity-80">Call Us</p>
+                                    <p class="text-lg md:text-xl font-medium tracking-wide">+91 9102288372</p>
                                 </div>
                             </a>
-                            <a href="mailto:kanhaiyaservices2025@gmail.com" id="cms-contact-email" class="flex items-center text-white/80 hover:text-white transition-colors group">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
-                                    <i class="fa-solid fa-envelope text-lg"></i>
+                            
+                            <a href="mailto:example@email.com" aria-label="Email Us" class="flex items-center text-white/80 hover:text-white transition-colors group/item active:scale-95">
+                                <div class="w-16 h-16 rounded-[20px] bg-white/5 border border-white/10 flex items-center justify-center mr-6 transition-all duration-300 group-hover/item:bg-[var(--ios-accent)]/20 group-hover/item:border-[var(--ios-accent)]/50 group-hover/item:shadow-[0_0_25px_rgba(10,132,255,0.4)] backdrop-blur-md">
+                                    <i class="fa-solid fa-envelope text-xl group-hover/item:text-[var(--ios-accent)] transition-colors"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Email Us</p>
-                                    <p class="text-base font-medium">kanhaiyaservices2025@gmail.com</p>
+                                    <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--ios-accent)] mb-1 opacity-80">Email Us</p>
+                                    <p class="text-lg md:text-xl font-medium tracking-wide">example@email.com</p>
                                 </div>
                             </a>
-                            <div class="flex items-center text-white/80 group">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
-                                    <i class="fa-solid fa-location-dot text-lg"></i>
+
+                            <div class="flex items-center text-white/80 group/item">
+                                <div class="w-16 h-16 rounded-[20px] bg-white/5 border border-white/10 flex items-center justify-center mr-6 transition-all duration-300 group-hover/item:bg-[var(--ios-accent)]/20 group-hover/item:border-[var(--ios-accent)]/50 group-hover/item:shadow-[0_0_25px_rgba(10,132,255,0.4)] backdrop-blur-md">
+                                    <i class="fa-solid fa-location-dot text-xl group-hover/item:text-[var(--ios-accent)] transition-colors"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Location</p>
-                                    <p class="text-base font-medium">Biraul, Bihar</p>
+                                    <p class="text-[10px] font-semibold tracking-widest uppercase text-[var(--ios-accent)] mb-1 opacity-80">Location</p>
+                                    <p class="text-lg md:text-xl font-medium tracking-wide">Abhay Cyber Zone, Biraul</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-3 ios-glass p-10 rounded-[28px]">
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Full Name</label>
-                                <input type="text" class="w-full ios-input px-5 py-4 text-sm" placeholder="John Doe">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Phone Number</label>
-                                <input type="tel" class="w-full ios-input px-5 py-4 text-sm" placeholder="+91 00000 00000">
-                            </div>
+                <!-- Premium Contact Form -->
+                <div class="ios-glass-heavy p-8 md:p-12 rounded-[32px] relative overflow-hidden border border-white/10 shadow-2xl">
+                    <!-- Light Reflection Shine -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                    <!-- Soft Neon Background Blur -->
+                    <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-[var(--ios-accent)] blur-[100px] opacity-20 rounded-full pointer-events-none"></div>
+                    
+                    <form class="space-y-6 relative z-10">
+                        <div>
+                            <label class="block text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-2 ml-2">Full Name</label>
+                            <input type="text" class="w-full bg-black/20 border border-white/10 rounded-[20px] px-6 py-4 text-white text-sm focus:bg-black/40 focus:border-[var(--ios-accent)] focus:ring-2 focus:ring-[var(--ios-accent)]/50 outline-none transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] placeholder-white/30 hover:border-white/20" placeholder="John Doe">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Message</label>
-                            <textarea rows="4" class="w-full ios-input px-5 py-4 text-sm resize-none" placeholder="How can we help you?"></textarea>
+                            <label class="block text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-2 ml-2">Phone Number</label>
+                            <input type="tel" class="w-full bg-black/20 border border-white/10 rounded-[20px] px-6 py-4 text-white text-sm focus:bg-black/40 focus:border-[var(--ios-accent)] focus:ring-2 focus:ring-[var(--ios-accent)]/50 outline-none transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] placeholder-white/30 hover:border-white/20" placeholder="+91 00000 00000">
                         </div>
-                        <button type="submit" class="w-full ios-btn ios-btn-primary py-4 text-base font-semibold mt-2">
-                            Send Message
+                        <div>
+                            <label class="block text-[11px] font-semibold uppercase tracking-widest text-white/60 mb-2 ml-2">Message</label>
+                            <textarea rows="4" class="w-full bg-black/20 border border-white/10 rounded-[20px] px-6 py-4 text-white text-sm resize-none focus:bg-black/40 focus:border-[var(--ios-accent)] focus:ring-2 focus:ring-[var(--ios-accent)]/50 outline-none transition-all duration-300 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] placeholder-white/30 hover:border-white/20" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full mt-4 py-4 rounded-full bg-gradient-to-r from-[var(--ios-accent)] to-blue-600 text-white font-bold text-lg shadow-[0_10px_30px_rgba(10,132,255,0.4)] hover:shadow-[0_15px_40px_rgba(10,132,255,0.6)] hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center group">
+                            Send Message <i class="fa-solid fa-paper-plane ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                         </button>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <footer class="relative pt-16 pb-8 mt-12 z-20 overflow-hidden border-t border-white/10 ios-glass-nav rounded-t-[40px]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+    <!-- ========================================== -->
+    <!-- 10. PREMIUM BRAND FOOTER                   -->
+    <!-- ========================================== -->
+    <footer class="relative pb-12 pt-8 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ios-glass-heavy p-10 md:p-14 rounded-[40px] relative overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center text-center ios-fade-up">
                 
-                <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start mb-4">
-                        <div class="w-12 h-12 rounded-[12px] bg-white/10 flex items-center justify-center mr-4 shadow-sm border border-white/10 overflow-hidden">
+                <!-- Inner Glow Overlay -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-[var(--ios-accent)] blur-[120px] opacity-10 pointer-events-none"></div>
+                <!-- Shine Reflection -->
+                <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                
+                <div class="relative z-10 w-full flex flex-col items-center">
+                    
+                    <!-- Top: Logo & Name -->
+                    <div class="flex flex-col items-center mb-10">
+                        <div class="w-20 h-20 rounded-[22px] bg-white/10 border border-white/20 flex items-center justify-center shadow-[0_10px_25px_rgba(0,0,0,0.3)] mb-6 overflow-hidden backdrop-blur-md">
                             <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                            <i class="fa-solid fa-bolt text-[var(--ios-accent)] text-3xl hidden" style="display: none;"></i>
                         </div>
-                        <div>
-                            <h2 class="font-bold text-xl leading-tight text-white tracking-tight">Abhay Cyber Zone</h2>
-                            <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" style="color: var(--ios-accent)">Biraul</p>
-                        </div>
+                        <h2 class="font-bold text-3xl md:text-4xl text-white tracking-tight mb-2">Abhay Cyber Zone, Biraul</h2>
+                        <p class="text-[var(--ios-accent)] text-xs md:text-sm font-semibold tracking-widest uppercase opacity-90">All Digital Services Available Here</p>
                     </div>
-                    <p class="text-white/50 text-sm max-w-sm mx-auto md:mx-0 font-light leading-relaxed">
-                        Your trusted digital partner. We provide fast, secure, and reliable online services directly to your fingertips.
-                    </p>
-                </div>
+                    
+                    <!-- Middle: Interactive Contacts -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-12 w-full max-w-xl mx-auto">
+                        <a href="tel:+919102288372" aria-label="Call Phone" class="ios-glass px-8 py-4 rounded-full text-white/90 hover:text-white text-sm md:text-base font-semibold transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(10,132,255,0.4)] hover:border-[var(--ios-accent)]/50 flex items-center active:scale-95 group w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-phone text-lg mr-3 text-[var(--ios-accent)] group-hover:animate-pulse"></i> +91 9102288372
+                        </a>
+                        <a href="mailto:example@email.com" aria-label="Send Email" class="ios-glass px-8 py-4 rounded-full text-white/90 hover:text-white text-sm md:text-base font-semibold transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(10,132,255,0.4)] hover:border-[var(--ios-accent)]/50 flex items-center active:scale-95 group w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-envelope text-lg mr-3 text-[var(--ios-accent)] group-hover:-translate-y-1 transition-transform"></i> example@email.com
+                        </a>
+                    </div>
 
-                <div class="text-center md:text-right">
-                    <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-5" style="color: var(--ios-accent)">Connect With Us</h3>
-                    <div class="flex items-center justify-center md:justify-end gap-4">
-                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-fb border border-white/10" title="Facebook">
-                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                    <!-- Bottom: Premium Social Icons Grid -->
+                    <div class="flex items-center justify-center gap-4 md:gap-6 mb-10 w-full flex-wrap">
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" aria-label="Visit Facebook Page" title="Facebook" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#1877F2] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#1877F2]/60 hover:bg-[#1877F2]/10 hover:shadow-[0_10px_25px_rgba(24,119,242,0.5)] active:scale-95">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
                         </a>
-                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="WhatsApp Channel">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <!-- WhatsApp Group -->
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG" target="_blank" aria-label="Join WhatsApp Group" title="WhatsApp Group" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#25D366] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 hover:shadow-[0_10px_25px_rgba(37,211,102,0.5)] active:scale-95">
+                            <i class="fa-solid fa-users text-lg"></i>
                         </a>
-                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="Join WhatsApp Group">
-                            <i class="fa-solid fa-users text-sm"></i>
+                        <!-- WhatsApp Channel -->
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" aria-label="Join WhatsApp Channel" title="WhatsApp Channel" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#25D366] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#25D366]/60 hover:bg-[#25D366]/10 hover:shadow-[0_10px_25px_rgba(37,211,102,0.5)] active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
                         </a>
-                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-tg border border-white/10" title="Telegram">
-                            <i class="fa-brands fa-telegram text-lg"></i>
+                        <!-- Telegram -->
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" aria-label="Join Telegram Channel" title="Telegram Channel" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#0088cc] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#0088cc]/60 hover:bg-[#0088cc]/10 hover:shadow-[0_10px_25px_rgba(0,136,204,0.5)] active:scale-95">
+                            <i class="fa-brands fa-telegram text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/abhaycyberzone.biraul?igsh=b3RlbXFyNTVyamxn" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-ig border border-white/10" title="Instagram">
-                            <i class="fa-brands fa-instagram text-lg"></i>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/abhaycyberzone.biraul" target="_blank" aria-label="Visit Instagram Profile" title="Instagram" class="w-14 h-14 rounded-full ios-glass flex items-center justify-center text-white/80 hover:text-[#E1306C] transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#E1306C]/60 hover:bg-[#E1306C]/10 hover:shadow-[0_10px_25px_rgba(225,48,108,0.5)] active:scale-95">
+                            <i class="fa-brands fa-instagram text-2xl"></i>
                         </a>
                     </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 pt-8 border-t border-white/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-white/40 text-xs font-light">&copy; 2024 Abhay Cyber Zone Biraul. All rights reserved.</p>
-                <div class="flex gap-6 text-white/40 text-xs font-light">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+
+                    <!-- Copyright Line -->
+                    <div class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-white/40 text-xs font-light tracking-wide">&copy; 2024 Abhay Cyber Zone, Biraul. Owner: Abhay Kumar.</p>
+                        <div class="flex gap-6 text-white/40 text-xs font-light tracking-wide">
+                            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/919102288372" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="Chat with us on WhatsApp">
+    <!-- Interactive Floating WhatsApp Button -->
+    <a href="https://wa.me/919102288372" target="_blank" aria-label="Chat with us on WhatsApp" title="Open WhatsApp Chat" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn cursor-pointer" style="background: linear-gradient(135deg, #25D366, #128C7E);">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
         <span class="absolute top-0 right-0 flex h-4 w-4">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -537,18 +893,20 @@
         </span>
     </a>
 
+    <!-- Interaction Scripts -->
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle Logic
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
+        
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+            menu.classList.toggle('is-open');
         });
 
         // Close mobile menu on click
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                menu.classList.add('hidden');
+                menu.classList.remove('is-open');
             });
         });
 
@@ -584,5 +942,6 @@
     </script>
 </body>
 </html>
+
 
 
